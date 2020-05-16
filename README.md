@@ -16,4 +16,5 @@ npm install --save koa-graphql
 
 ### TypeScript
 
-This mod
+This module includes a [TypeScript](https://www.typescriptlang.org/)
+declaration 
