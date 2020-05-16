@@ -6,4 +6,14 @@
 
 Create a GraphQL HTTP server with [Koa](https://koajs.com/).
 
-Port from [express-graphql](https://github.com/graphql/express-graph
+Port from [express-graphql](https://github.com/graphql/express-graphql).
+
+## Installation
+
+```
+npm install --save koa-graphql
+```
+
+### TypeScript
+
+This mod
