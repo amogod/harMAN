@@ -25,4 +25,6 @@ information for TypeScript projects.
 Mount `koa-graphql` as a route handler:
 
 ```js
-const Koa = require('k
+const Koa = require('koa');
+const mount = require('koa-mount');
+const { graph
