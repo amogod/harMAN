@@ -18,4 +18,8 @@ npm install --save koa-graphql
 
 This module includes a [TypeScript](https://www.typescriptlang.org/)
 declaration file to enable auto complete in compatible editors and type
-in
+information for TypeScript projects.
+
+## Simple Setup
+
+M
