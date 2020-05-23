@@ -22,4 +22,7 @@ information for TypeScript projects.
 
 ## Simple Setup
 
-M
+Mount `koa-graphql` as a route handler:
+
+```js
+const Koa = require('k
