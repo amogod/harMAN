@@ -32,4 +32,8 @@ const { graphqlHTTP } = require('koa-graphql');
 const app = new Koa();
 
 app.use(
-  mou
+  mount(
+    '/graphql',
+    graphqlHTTP({
+      schema: MyGraphQLSchema,
+ 
