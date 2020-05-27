@@ -27,4 +27,9 @@ Mount `koa-graphql` as a route handler:
 ```js
 const Koa = require('koa');
 const mount = require('koa-mount');
-const { graph
+const { graphqlHTTP } = require('koa-graphql');
+
+const app = new Koa();
+
+app.use(
+  mou
