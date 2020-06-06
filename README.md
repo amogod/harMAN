@@ -36,4 +36,12 @@ app.use(
     '/graphql',
     graphqlHTTP({
       schema: MyGraphQLSchema,
- 
+      graphiql: true,
+    }),
+  ),
+);
+
+app.listen(4000);
+```
+
+#
