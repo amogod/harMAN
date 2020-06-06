@@ -44,4 +44,9 @@ app.use(
 app.listen(4000);
 ```
 
-#
+## Setup with Koa Router
+
+With `@koa/router`:
+
+```js
+const Koa = require('koa')
