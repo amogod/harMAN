@@ -49,4 +49,6 @@ app.listen(4000);
 With `@koa/router`:
 
 ```js
-const Koa = require('koa')
+const Koa = require('koa');
+const Router = require('@koa/router');
+const { g
