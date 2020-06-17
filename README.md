@@ -54,4 +54,9 @@ const Router = require('@koa/router');
 const { graphqlHTTP } = require('koa-graphql');
 
 const app = new Koa();
-const
+const router = new Router();
+
+router.all(
+  '/graphql',
+  graphqlHTTP({
+    s
