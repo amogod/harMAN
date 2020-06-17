@@ -59,4 +59,9 @@ const router = new Router();
 router.all(
   '/graphql',
   graphqlHTTP({
-    s
+    schema: MyGraphQLSchema,
+    graphiql: true,
+  }),
+);
+
+app.use(rout
