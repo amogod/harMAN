@@ -64,4 +64,7 @@ router.all(
   }),
 );
 
-app.use(rout
+app.use(router.routes()).use(router.allowedMethods());
+```
+
+## Setup with Koa v1
