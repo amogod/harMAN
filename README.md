@@ -68,3 +68,5 @@ app.use(router.routes()).use(router.allowedMethods());
 ```
 
 ## Setup with Koa v1
+
+For Koa 1, use [koa-convert](https://github.com/koajs/convert) t
