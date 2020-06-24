@@ -69,4 +69,8 @@ app.use(router.routes()).use(router.allowedMethods());
 
 ## Setup with Koa v1
 
-For Koa 1, use [koa-convert](https://github.com/koajs/convert) t
+For Koa 1, use [koa-convert](https://github.com/koajs/convert) to convert the middleware:
+
+```js
+const koa = require('koa');
+const mount =
