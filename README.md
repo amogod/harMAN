@@ -83,4 +83,7 @@ app.use(
   mount(
     '/graphql',
     convert.back(
-      graphqlH
+      graphqlHTTP({
+        schema: MyGraphQLSchema,
+        graphiql: true,
+  
