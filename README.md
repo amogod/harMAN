@@ -73,4 +73,5 @@ For Koa 1, use [koa-convert](https://github.com/koajs/convert) to convert the mi
 
 ```js
 const koa = require('koa');
-const mount =
+const mount = require('koa-mount'); // koa-mount@1.x
+const convert = require('koa
