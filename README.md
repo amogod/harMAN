@@ -74,4 +74,7 @@ For Koa 1, use [koa-convert](https://github.com/koajs/convert) to convert the mi
 ```js
 const koa = require('koa');
 const mount = require('koa-mount'); // koa-mount@1.x
-const convert = require('koa
+const convert = require('koa-convert');
+const { graphqlHTTP } = require('koa-graphql');
+
+const app = koa(
