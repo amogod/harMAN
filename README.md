@@ -77,4 +77,10 @@ const mount = require('koa-mount'); // koa-mount@1.x
 const convert = require('koa-convert');
 const { graphqlHTTP } = require('koa-graphql');
 
-const app = koa(
+const app = koa();
+
+app.use(
+  mount(
+    '/graphql',
+    convert.back(
+      graphqlH
