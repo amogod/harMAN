@@ -86,4 +86,10 @@ app.use(
       graphqlHTTP({
         schema: MyGraphQLSchema,
         graphiql: true,
-  
+      }),
+    ),
+  ),
+);
+```
+
+## Setup with Subscription Suppo
