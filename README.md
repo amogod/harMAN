@@ -92,4 +92,8 @@ app.use(
 );
 ```
 
-## Setup with Subscription Suppo
+## Setup with Subscription Support
+
+```js
+const Koa = require('koa');
+const mount = require('koa-mount');
