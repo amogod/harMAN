@@ -97,3 +97,5 @@ app.use(
 ```js
 const Koa = require('koa');
 const mount = require('koa-mount');
+const { graphqlHTTP } = require('koa-graphql');
+const typ
