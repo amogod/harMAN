@@ -103,4 +103,6 @@ const resolvers = require('./resolvers');
 const { makeExecutableSchema } = require('graphql-tools');
 const schema = makeExecutableSchema({
   typeDefs: typeDefs,
- 
+  resolvers: resolvers,
+});
+const { execute, subscribe } = require('gr
