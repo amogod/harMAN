@@ -109,4 +109,8 @@ const { execute, subscribe } = require('graphql');
 const { createServer } = require('http');
 const { SubscriptionServer } = require('subscriptions-transport-ws');
 const PORT = 4000;
-co
+const app = new Koa();
+app.use(
+  mount(
+    '/graphql',
+    gra
