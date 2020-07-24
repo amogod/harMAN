@@ -107,4 +107,6 @@ const schema = makeExecutableSchema({
 });
 const { execute, subscribe } = require('graphql');
 const { createServer } = require('http');
-const { SubscriptionServ
+const { SubscriptionServer } = require('subscriptions-transport-ws');
+const PORT = 4000;
+co
