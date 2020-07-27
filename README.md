@@ -113,4 +113,7 @@ const app = new Koa();
 app.use(
   mount(
     '/graphql',
-    gra
+    graphqlHTTP({
+      schema: schema,
+      graphiql: {
+        subscriptionE
