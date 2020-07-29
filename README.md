@@ -116,4 +116,8 @@ app.use(
     graphqlHTTP({
       schema: schema,
       graphiql: {
-        subscriptionE
+        subscriptionEndpoint: `ws://localhost:${PORT}/subscriptions`,
+      },
+    }),
+  ),
+)
