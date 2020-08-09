@@ -124,4 +124,8 @@ app.use(
 const ws = createServer(app.callback());
 ws.listen(PORT, () => {
   // Set up the WebSocket for handling GraphQL subscriptions.
-  new
+  new SubscriptionServer(
+    {
+      execute,
+      subscribe,
+    
