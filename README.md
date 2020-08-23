@@ -128,4 +128,8 @@ ws.listen(PORT, () => {
     {
       execute,
       subscribe,
-    
+      schema,
+    },
+    {
+      server: ws,
+      path: '/subscription
