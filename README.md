@@ -132,4 +132,12 @@ ws.listen(PORT, () => {
     },
     {
       server: ws,
-      path: '/subscription
+      path: '/subscriptions',
+    },
+  );
+});
+```
+
+## Options
+
+The `graphqlHTTP` function a
