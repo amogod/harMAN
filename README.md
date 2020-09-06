@@ -140,4 +140,6 @@ ws.listen(PORT, () => {
 
 ## Options
 
-The `graphqlHTTP` function a
+The `graphqlHTTP` function accepts the following options:
+
+- **`schema`**: A `GraphQLSchema` 
