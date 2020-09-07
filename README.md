@@ -142,4 +142,5 @@ ws.listen(PORT, () => {
 
 The `graphqlHTTP` function accepts the following options:
 
-- **`schema`**: A `GraphQLSchema` 
+- **`schema`**: A `GraphQLSchema` instance from [`graphql-js`][].
+  A `schema` _must_ be pro
