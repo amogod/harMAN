@@ -145,4 +145,5 @@ The `graphqlHTTP` function accepts the following options:
 - **`schema`**: A `GraphQLSchema` instance from [`graphql-js`][].
   A `schema` _must_ be provided.
 
-- **`graphiql`**: If `true`, presents [GraphiQL][] when the
+- **`graphiql`**: If `true`, presents [GraphiQL][] when the GraphQL endpoint is
+  loaded in a browser. We recommend that you set
