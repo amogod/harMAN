@@ -146,4 +146,5 @@ The `graphqlHTTP` function accepts the following options:
   A `schema` _must_ be provided.
 
 - **`graphiql`**: If `true`, presents [GraphiQL][] when the GraphQL endpoint is
-  loaded in a browser. We recommend that you set
+  loaded in a browser. We recommend that you set `graphiql` to `true` when your
+  app is in development, because it's qui
