@@ -147,4 +147,6 @@ The `graphqlHTTP` function accepts the following options:
 
 - **`graphiql`**: If `true`, presents [GraphiQL][] when the GraphQL endpoint is
   loaded in a browser. We recommend that you set `graphiql` to `true` when your
-  app is in development, because it's qui
+  app is in development, because it's quite useful. You may or may not want it
+  in production.
+  Alt
