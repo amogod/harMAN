@@ -151,4 +151,5 @@ The `graphqlHTTP` function accepts the following options:
   in production.
   Alternatively, instead of `true` you can pass in an options object:
 
-  - **`defaultQuery`**: An optional GraphQL string
+  - **`defaultQuery`**: An optional GraphQL string to use when no query
+    is provided and no stored query
