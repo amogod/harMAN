@@ -149,4 +149,4 @@ The `graphqlHTTP` function accepts the following options:
   loaded in a browser. We recommend that you set `graphiql` to `true` when your
   app is in development, because it's quite useful. You may or may not want it
   in production.
-  Alt
+  Alternatively, instead of `true` you can pass in an o
