@@ -155,4 +155,4 @@ The `graphqlHTTP` function accepts the following options:
     is provided and no stored query exists from a previous session.
     If `undefined` is provided, GraphiQL will use its own default query.
 
-  - **`headerEditorE
+  - **`headerEditorEnabled`**: An optional boolean which enables the header editor when tru
