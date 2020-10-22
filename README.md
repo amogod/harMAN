@@ -152,4 +152,5 @@ The `graphqlHTTP` function accepts the following options:
   Alternatively, instead of `true` you can pass in an options object:
 
   - **`defaultQuery`**: An optional GraphQL string to use when no query
-    is provided and no stored query
+    is provided and no stored query exists from a previous session.
+    If `undefined` is provided, Graph
