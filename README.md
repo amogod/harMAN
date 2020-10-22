@@ -153,4 +153,6 @@ The `graphqlHTTP` function accepts the following options:
 
   - **`defaultQuery`**: An optional GraphQL string to use when no query
     is provided and no stored query exists from a previous session.
-    If `undefined` is provided, Graph
+    If `undefined` is provided, GraphiQL will use its own default query.
+
+  - **`headerEditorE
