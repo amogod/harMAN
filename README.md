@@ -158,4 +158,6 @@ The `graphqlHTTP` function accepts the following options:
   - **`headerEditorEnabled`**: An optional boolean which enables the header editor when true.
     Defaults to `false`.
 
-  - **`subscriptionEndpoint`**: An optional GraphQ
+  - **`subscriptionEndpoint`**: An optional GraphQL string contains the WebSocket server url for subscription.
+
+  - **
