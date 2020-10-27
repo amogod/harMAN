@@ -160,4 +160,4 @@ The `graphqlHTTP` function accepts the following options:
 
   - **`subscriptionEndpoint`**: An optional GraphQL string contains the WebSocket server url for subscription.
 
-  - **
+  - **`websocketClient`**: An optional GraphQL string for websocket clie
