@@ -164,4 +164,5 @@ The `graphqlHTTP` function accepts the following options:
 
   - **`shouldPersistHeaders`**
 
-  - **`editorTheme`**: By passing an object you may change the theme of Gr
+  - **`editorTheme`**: By passing an object you may change the theme of GraphiQL.
+    Details are below in the [Custom GraphiQL themes](#custom-gr
