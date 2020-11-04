@@ -167,4 +167,5 @@ The `graphqlHTTP` function accepts the following options:
   - **`editorTheme`**: By passing an object you may change the theme of GraphiQL.
     Details are below in the [Custom GraphiQL themes](#custom-graphiql-themes) section.
 
-- **`rootValue`**: A value to pass as the 
+- **`rootValue`**: A value to pass as the `rootValue` to the `execute()`
+  function from [`graphql-js/src/execute.js`](ht
