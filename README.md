@@ -168,4 +168,4 @@ The `graphqlHTTP` function accepts the following options:
     Details are below in the [Custom GraphiQL themes](#custom-graphiql-themes) section.
 
 - **`rootValue`**: A value to pass as the `rootValue` to the `execute()`
-  function from [`graphql-js/src/execute.js`](ht
+  function from [`graphql-js/src/execute.js`](https://github.com/graphql/graphql-js/blob/main/src/execution/e
