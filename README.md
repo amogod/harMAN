@@ -178,4 +178,5 @@ The `graphqlHTTP` function accepts the following options:
 
 - **`extensions`**: An optional function for adding additional metadata to the
   GraphQL response as a key-value object. The result will be added to the
-  `"extensions"` field in the resulting JSON. This is often a useful place
+  `"extensions"` field in the resulting JSON. This is often a useful place to
+  add development time metadata such as the runtime of a query or
