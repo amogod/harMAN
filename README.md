@@ -174,4 +174,6 @@ The `graphqlHTTP` function accepts the following options:
   function from [`graphql-js/src/execute.js`](https://github.com/graphql/graphql-js/blob/main/src/execution/execute.js#L130). If `context` is not provided, the
   `ctx` object is passed as the context.
 
-- **`pretty`**: If `true`
+- **`pretty`**: If `true`, any JSON response will be pretty-printed.
+
+- **`extensions`**: A
