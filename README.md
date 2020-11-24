@@ -176,4 +176,5 @@ The `graphqlHTTP` function accepts the following options:
 
 - **`pretty`**: If `true`, any JSON response will be pretty-printed.
 
-- **`extensions`**: A
+- **`extensions`**: An optional function for adding additional metadata to the
+  GraphQL respon
