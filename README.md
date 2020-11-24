@@ -171,4 +171,4 @@ The `graphqlHTTP` function accepts the following options:
   function from [`graphql-js/src/execute.js`](https://github.com/graphql/graphql-js/blob/main/src/execution/execute.js#L129).
 
 - **`context`**: A value to pass as the `context` to the `execute()`
-  function from [`graphql-js/src/execute.js`](https://github.com/graphql/graphql-js/blob/main/src/e
+  function from [`graphql-js/src/execute.js`](https://github.com/graphql/graphql-js/blob/main/src/execution/execute.js#L130). If `context` is not provided, the
