@@ -180,4 +180,5 @@ The `graphqlHTTP` function accepts the following options:
   GraphQL response as a key-value object. The result will be added to the
   `"extensions"` field in the resulting JSON. This is often a useful place to
   add development time metadata such as the runtime of a query or the amount
-  of resources consumed. This may be an async funct
+  of resources consumed. This may be an async function. The function is
+  given one object as an argument:
