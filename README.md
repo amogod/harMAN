@@ -186,4 +186,5 @@ The `graphqlHTTP` function accepts the following options:
 - **`validationRules`**: Optional additional validation rules that queries must
   satisfy in addition to those defined by the GraphQL spec.
 
-- **`customValidateFn`**: An optional functio
+- **`customValidateFn`**: An optional function which will be used to validate
+  instead of de
