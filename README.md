@@ -187,4 +187,6 @@ The `graphqlHTTP` function accepts the following options:
   satisfy in addition to those defined by the GraphQL spec.
 
 - **`customValidateFn`**: An optional function which will be used to validate
-  instead of de
+  instead of default `validate` from `graphql-js`.
+
+- **`customExecuteFn`**: An optional funct
