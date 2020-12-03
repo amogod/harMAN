@@ -183,4 +183,5 @@ The `graphqlHTTP` function accepts the following options:
   of resources consumed. This may be an async function. The function is
   given one object as an argument: `{ document, variables, operationName, result, context }`.
 
-- **`validationRules`**: Optional additional validation rules 
+- **`validationRules`**: Optional additional validation rules that queries must
+  satisfy in addition to those defined by t
