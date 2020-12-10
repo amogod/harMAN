@@ -190,4 +190,6 @@ The `graphqlHTTP` function accepts the following options:
   instead of default `validate` from `graphql-js`.
 
 - **`customExecuteFn`**: An optional function which will be used to execute
-  instead of default `execute` from `
+  instead of default `execute` from `graphql-js`.
+
+- **`customFormatErrorFn`**: An optional function which will be 
