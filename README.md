@@ -206,4 +206,5 @@ The `graphqlHTTP` function accepts the following options:
 
 - **`typeResolver`**
 
-In addition to an object defining each option, options can also be 
+In addition to an object defining each option, options can also be provided as
+a function (or async function) which returns this options 
