@@ -200,4 +200,8 @@ The `graphqlHTTP` function accepts the following options:
   instead of the default `parse` from `graphql-js`.
 
 - **`formatError`**: is deprecated and replaced by `customFormatErrorFn`. It will be
- 
+  removed in version 1.0.0.
+
+- **`fieldResolver`**
+
+- **`typeResol
