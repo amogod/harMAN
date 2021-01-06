@@ -208,4 +208,5 @@ The `graphqlHTTP` function accepts the following options:
 
 In addition to an object defining each option, options can also be provided as
 a function (or async function) which returns this options object. This function
-is provided the arguments `(request, respon
+is provided the arguments `(request, response, graphQLParams)` and is called
+after the request has been parsed.
