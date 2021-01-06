@@ -211,4 +211,10 @@ a function (or async function) which returns this options object. This function
 is provided the arguments `(request, response, graphQLParams)` and is called
 after the request has been parsed.
 
-The `graphQLParams` is provided as the object `{ query, variables
+The `graphQLParams` is provided as the object `{ query, variables, operationName, raw }`.
+
+```js
+app.use(
+  mount(
+    '/graphql',
+    
