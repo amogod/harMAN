@@ -204,4 +204,6 @@ The `graphqlHTTP` function accepts the following options:
 
 - **`fieldResolver`**
 
-- **`typeResol
+- **`typeResolver`**
+
+In addition to an object defining each option, options can also be 
