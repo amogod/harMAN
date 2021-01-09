@@ -218,4 +218,5 @@ app.use(
   mount(
     '/graphql',
     graphqlHTTP(async (request, response, ctx, graphQLParams) => ({
-      schema:
+      schema: MyGraphQLSchema,
+      rootValue: await someFunctionToGetRootV
