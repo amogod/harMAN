@@ -219,4 +219,13 @@ app.use(
     '/graphql',
     graphqlHTTP(async (request, response, ctx, graphQLParams) => ({
       schema: MyGraphQLSchema,
-      rootValue: await someFunctionToGetRootV
+      rootValue: await someFunctionToGetRootValue(request),
+      graphiql: true,
+    })),
+  ),
+);
+```
+
+## HTTP Usage
+
+Onc
