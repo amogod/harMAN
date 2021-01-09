@@ -217,4 +217,5 @@ The `graphQLParams` is provided as the object `{ query, variables, operationName
 app.use(
   mount(
     '/graphql',
-    
+    graphqlHTTP(async (request, response, ctx, graphQLParams) => ({
+      schema:
