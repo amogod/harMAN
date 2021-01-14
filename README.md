@@ -228,4 +228,5 @@ app.use(
 
 ## HTTP Usage
 
-Onc
+Once installed at a path, `koa-graphql` will accept requests with
+the param
