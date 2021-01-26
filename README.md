@@ -229,4 +229,8 @@ app.use(
 ## HTTP Usage
 
 Once installed at a path, `koa-graphql` will accept requests with
-the param
+the parameters:
+
+- **`query`**: A string GraphQL document to be executed.
+
+- **`varia
