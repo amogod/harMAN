@@ -237,4 +237,5 @@ the parameters:
   as a JSON object.
 
 - **`operationName`**: If the provided `query` contains multiple named
-  operations, this specifies which operation should be
+  operations, this specifies which operation should be executed. If not
+  provided, a 400 error will be returned if the `qu
