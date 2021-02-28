@@ -236,4 +236,5 @@ the parameters:
 - **`variables`**: The runtime values to use for any GraphQL query variables
   as a JSON object.
 
-- **`operationName`**: If the provided `query` contains 
+- **`operationName`**: If the provided `query` contains multiple named
+  operations, this specifies which operation should be
