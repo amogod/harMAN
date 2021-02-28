@@ -234,4 +234,6 @@ the parameters:
 - **`query`**: A string GraphQL document to be executed.
 
 - **`variables`**: The runtime values to use for any GraphQL query variables
-  as a JSO
+  as a JSON object.
+
+- **`operationName`**: If the provided `query` contains 
