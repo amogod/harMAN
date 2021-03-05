@@ -241,4 +241,5 @@ the parameters:
   provided, a 400 error will be returned if the `query` contains multiple
   named operations.
 
-- **`raw`**: If the `g
+- **`raw`**: If the `graphiql` option is enabled and the `raw` parameter is
+  provid
