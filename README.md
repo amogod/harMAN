@@ -242,4 +242,4 @@ the parameters:
   named operations.
 
 - **`raw`**: If the `graphiql` option is enabled and the `raw` parameter is
-  provid
+  provided, raw JSON will always be returned instead of Graphi
