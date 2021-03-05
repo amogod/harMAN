@@ -238,4 +238,7 @@ the parameters:
 
 - **`operationName`**: If the provided `query` contains multiple named
   operations, this specifies which operation should be executed. If not
-  provided, a 400 error will be returned if the `qu
+  provided, a 400 error will be returned if the `query` contains multiple
+  named operations.
+
+- **`raw`**: If the `g
