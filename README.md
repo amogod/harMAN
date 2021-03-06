@@ -245,4 +245,7 @@ the parameters:
   provided, raw JSON will always be returned instead of GraphiQL even when
   loaded from a browser.
 
-GraphQL will first look for each parameter in the query 
+GraphQL will first look for each parameter in the query string of a URL:
+
+```
+/graphql?query=query+getUser($id:ID){user(id:$id)
