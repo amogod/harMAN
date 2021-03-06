@@ -248,4 +248,7 @@ the parameters:
 GraphQL will first look for each parameter in the query string of a URL:
 
 ```
-/graphql?query=query+getUser($id:ID){user(id:$id)
+/graphql?query=query+getUser($id:ID){user(id:$id){name}}&variables={"id":"4"}
+```
+
+If not found in the query string, it 
