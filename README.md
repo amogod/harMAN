@@ -245,4 +245,4 @@ the parameters:
   provided, raw JSON will always be returned instead of GraphiQL even when
   loaded from a browser.
 
-Graph
+GraphQL will first look for each parameter in the query 
