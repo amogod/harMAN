@@ -253,4 +253,5 @@ GraphQL will first look for each parameter in the query string of a URL:
 
 If not found in the query string, it will look in the POST request body.
 
-If a previous midd
+If a previous middleware has already parsed the POST body, the `request.body`
+v
