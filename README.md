@@ -256,4 +256,4 @@ If not found in the query string, it will look in the POST request body.
 If a previous middleware has already parsed the POST body, the `request.body`
 value will be used. Use [`multer`][] or a similar middleware to add support
 for `multipart/form-data` content, which may be useful for GraphQL mutations
-involving uploading files. See an [example using multer](https://github.com/graphql-community/koa-graphql/b
+involving uploading files. See an [example using multer](https://github.com/graphql-community/koa-graphql/blob/e1a98f3548203a3c41fedf3d4267846785480d28/src/__tests__/htt
