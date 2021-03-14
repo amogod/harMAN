@@ -261,4 +261,7 @@ involving uploading files. See an [example using multer](https://github.com/grap
 If the POST body has not yet been parsed, `koa-graphql` will interpret it
 depending on the provided _Content-Type_ header.
 
-- **`application/json`**: the POST body 
+- **`application/json`**: the POST body will be parsed as a JSON
+  object of parameters.
+
+- **`application/x-www-
