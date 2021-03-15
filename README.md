@@ -265,4 +265,6 @@ depending on the provided _Content-Type_ header.
   object of parameters.
 
 - **`application/x-www-form-urlencoded`**: the POST body will be
-  parsed as a url-encoded stri
+  parsed as a url-encoded string of key-value pairs.
+
+- **`application/graphql`**: the POST body wi
