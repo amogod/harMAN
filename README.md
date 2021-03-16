@@ -272,4 +272,5 @@ depending on the provided _Content-Type_ header.
 
 ## Combining with Other koa Middleware
 
-By default, the koa re
+By default, the koa request is passed as the GraphQL `context`.
+Since most koa middleware operates by ad
