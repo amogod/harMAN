@@ -268,4 +268,8 @@ depending on the provided _Content-Type_ header.
   parsed as a url-encoded string of key-value pairs.
 
 - **`application/graphql`**: the POST body will be parsed as GraphQL
-  query string, which provides the `query` parameter
+  query string, which provides the `query` parameter.
+
+## Combining with Other koa Middleware
+
+By default, the koa re
