@@ -267,4 +267,5 @@ depending on the provided _Content-Type_ header.
 - **`application/x-www-form-urlencoded`**: the POST body will be
   parsed as a url-encoded string of key-value pairs.
 
-- **`application/graphql`**: the POST body wi
+- **`application/graphql`**: the POST body will be parsed as GraphQL
+  query string, which provides the `query` parameter
