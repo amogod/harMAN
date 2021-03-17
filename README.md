@@ -274,4 +274,4 @@ depending on the provided _Content-Type_ header.
 
 By default, the koa request is passed as the GraphQL `context`.
 Since most koa middleware operates by adding extra data to the
-request object, this means you can use most koa middleware just by inserting it before `graphqlHTTP` is mounted. Thi
+request object, this means you can use most koa middleware just by inserting it before `graphqlHTTP` is mounted. This covers scenarios such as authenticating the user, handling file upl
