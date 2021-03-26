@@ -276,4 +276,8 @@ By default, the koa request is passed as the GraphQL `context`.
 Since most koa middleware operates by adding extra data to the
 request object, this means you can use most koa middleware just by inserting it before `graphqlHTTP` is mounted. This covers scenarios such as authenticating the user, handling file uploads, or mounting GraphQL on a dynamic endpoint.
 
-This example uses [`koa-session`][] to provide GraphQL with the currently log
+This example uses [`koa-session`][] to provide GraphQL with the currently logged-in session.
+
+```js
+const Koa = require('koa');
+const mo
