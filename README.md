@@ -285,4 +285,6 @@ const session = require('koa-session');
 const { graphqlHTTP } = require('koa-graphql');
 
 const app = new Koa();
-app.ke
+app.keys = ['some secret'];
+app.use(session(app));
+app.use(function* (next) {
