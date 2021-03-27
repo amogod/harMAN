@@ -280,4 +280,6 @@ This example uses [`koa-session`][] to provide GraphQL with the currently logged
 
 ```js
 const Koa = require('koa');
-const mo
+const mount = require('koa-mount');
+const session = require('koa-session');
+const { 
