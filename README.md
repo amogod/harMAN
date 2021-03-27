@@ -282,4 +282,7 @@ This example uses [`koa-session`][] to provide GraphQL with the currently logged
 const Koa = require('koa');
 const mount = require('koa-mount');
 const session = require('koa-session');
-const { 
+const { graphqlHTTP } = require('koa-graphql');
+
+const app = new Koa();
+app.ke
