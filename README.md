@@ -293,4 +293,7 @@ app.use(function* (next) {
 });
 
 app.use(
-  mount
+  mount(
+    '/graphql',
+    graphqlHTTP({
+      schema: MySessionAware
