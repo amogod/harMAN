@@ -288,3 +288,9 @@ const app = new Koa();
 app.keys = ['some secret'];
 app.use(session(app));
 app.use(function* (next) {
+  this.session.id = 'me';
+  yield next;
+});
+
+app.use(
+  mount
