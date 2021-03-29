@@ -303,4 +303,4 @@ app.use(
 );
 ```
 
-Then 
+Then in your type definitions, you can access the ctx via 
