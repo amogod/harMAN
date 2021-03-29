@@ -303,4 +303,6 @@ app.use(
 );
 ```
 
-Then in your type definitions, you can access the ctx via 
+Then in your type definitions, you can access the ctx via the third "context" argument in your `resolve` function:
+
+`
