@@ -296,4 +296,11 @@ app.use(
   mount(
     '/graphql',
     graphqlHTTP({
-      schema: MySessionAware
+      schema: MySessionAwareGraphQLSchema,
+      graphiql: true,
+    }),
+  ),
+);
+```
+
+Then 
