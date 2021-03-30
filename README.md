@@ -308,4 +308,7 @@ Then in your type definitions, you can access the ctx via the third "context" ar
 ```js
 new GraphQLObjectType({
   name: 'MyType',
-  fields: 
+  fields: {
+    myField: {
+      type: GraphQLString,
+      resolve(p
