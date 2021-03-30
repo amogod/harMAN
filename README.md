@@ -305,4 +305,7 @@ app.use(
 
 Then in your type definitions, you can access the ctx via the third "context" argument in your `resolve` function:
 
-`
+```js
+new GraphQLObjectType({
+  name: 'MyType',
+  fields: 
