@@ -321,4 +321,5 @@ new GraphQLObjectType({
 
 ## Providing Extensions
 
-The GraphQL response allows for
+The GraphQL response allows for adding additional information in a response to
+a GraphQL query v
