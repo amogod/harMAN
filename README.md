@@ -311,4 +311,6 @@ new GraphQLObjectType({
   fields: {
     myField: {
       type: GraphQLString,
-      resolve(p
+      resolve(parentValue, args, ctx) {
+        // use `ctx.session` here
+    
