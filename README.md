@@ -313,4 +313,12 @@ new GraphQLObjectType({
       type: GraphQLString,
       resolve(parentValue, args, ctx) {
         // use `ctx.session` here
-    
+      },
+    },
+  },
+});
+```
+
+## Providing Extensions
+
+The GraphQL response allows for
