@@ -323,4 +323,7 @@ new GraphQLObjectType({
 
 The GraphQL response allows for adding additional information in a response to
 a GraphQL query via a field in the response called `"extensions"`. This is added
-by providing an `extensions` function when using `graphqlHTTP`. T
+by providing an `extensions` function when using `graphqlHTTP`. The function
+must return a JSON-serializable Object.
+
+When called, th
