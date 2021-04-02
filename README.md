@@ -322,4 +322,5 @@ new GraphQLObjectType({
 ## Providing Extensions
 
 The GraphQL response allows for adding additional information in a response to
-a GraphQL query via a field in the response called `"extensions"`. This
+a GraphQL query via a field in the response called `"extensions"`. This is added
+by providing an `extensions` function when using `graphqlHTTP`. T
