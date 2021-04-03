@@ -327,4 +327,6 @@ by providing an `extensions` function when using `graphqlHTTP`. The function
 must return a JSON-serializable Object.
 
 When called, this is provided an argument which you can use to get information
-abo
+about the GraphQL request:
+
+`{ document, variables, operation
