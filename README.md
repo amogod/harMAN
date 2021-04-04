@@ -331,4 +331,5 @@ about the GraphQL request:
 
 `{ document, variables, operationName, result, context }`
 
-This example illustrates adding the amount of time co
+This example illustrates adding the amount of time consumed by running the
+provided query, which could perhaps be use
