@@ -329,4 +329,6 @@ must return a JSON-serializable Object.
 When called, this is provided an argument which you can use to get information
 about the GraphQL request:
 
-`{ document, variables, operation
+`{ document, variables, operationName, result, context }`
+
+This example illustrates adding the amount of time co
