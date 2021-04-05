@@ -335,4 +335,8 @@ This example illustrates adding the amount of time consumed by running the
 provided query, which could perhaps be used by your development tools.
 
 ```js
-const { graphqlHTT
+const { graphqlHTTP } = require('koa-graphql');
+
+const app = new Koa();
+
+const extensi
