@@ -339,4 +339,8 @@ const { graphqlHTTP } = require('koa-graphql');
 
 const app = new Koa();
 
-const extensi
+const extensions = ({
+  document,
+  variables,
+  operationName,
+  result,
