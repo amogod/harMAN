@@ -344,3 +344,7 @@ const extensions = ({
   variables,
   operationName,
   result,
+  context,
+}) => {
+  return {
+    runTime: Date.now() - contex
