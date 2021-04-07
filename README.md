@@ -347,4 +347,11 @@ const extensions = ({
   context,
 }) => {
   return {
-    runTime: Date.now() - contex
+    runTime: Date.now() - context.startTime,
+  };
+};
+
+app.use(
+  mount(
+    '/graphql',
+    graphq
