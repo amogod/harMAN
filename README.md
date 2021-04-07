@@ -354,4 +354,7 @@ const extensions = ({
 app.use(
   mount(
     '/graphql',
-    graphq
+    graphqlHTTP((request) => {
+      return {
+        schema: MyGraphQLSchema,
+   
