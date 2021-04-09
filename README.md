@@ -357,4 +357,5 @@ app.use(
     graphqlHTTP((request) => {
       return {
         schema: MyGraphQLSchema,
-   
+        context: { startTime: Date.now() },
+        graphiql
