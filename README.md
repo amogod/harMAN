@@ -366,4 +366,10 @@ app.use(
 );
 ```
 
-When querying this endpoint, it would include this informat
+When querying this endpoint, it would include this information in the result,
+for example:
+
+```js
+{
+  "data": { ... },
+  "exten
