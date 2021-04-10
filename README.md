@@ -358,4 +358,12 @@ app.use(
       return {
         schema: MyGraphQLSchema,
         context: { startTime: Date.now() },
-        graphiql
+        graphiql: true,
+        extensions,
+      };
+    }),
+  ),
+);
+```
+
+When querying
