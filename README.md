@@ -366,4 +366,4 @@ app.use(
 );
 ```
 
-When querying
+When querying this endpoint, it would include this informat
