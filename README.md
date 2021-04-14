@@ -372,4 +372,12 @@ for example:
 ```js
 {
   "data": { ... },
-  "exten
+  "extensions": {
+    "runTime": 135
+  }
+}
+```
+
+## Additional Validation Rules
+
+GraphQL
