@@ -380,4 +380,4 @@ for example:
 
 ## Additional Validation Rules
 
-GraphQL
+GraphQL's [validation phase](https://graphql.github.io/graphql
