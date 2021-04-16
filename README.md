@@ -380,4 +380,4 @@ for example:
 
 ## Additional Validation Rules
 
-GraphQL's [validation phase](https://graphql.github.io/graphql
+GraphQL's [validation phase](https://graphql.github.io/graphql-spec/#sec-Validation) checks the query to ensure that it can 
