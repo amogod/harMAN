@@ -382,4 +382,4 @@ for example:
 
 GraphQL's [validation phase](https://graphql.github.io/graphql-spec/#sec-Validation) checks the query to ensure that it can be successfully executed against the schema. The `validationRules` option allows for additional rules to be run during this phase. Rules are applied to each node in an AST representing the query using the Visitor pattern.
 
-A validation rule is a function which returns a visitor for one or more node Types. Below is an e
+A validation rule is a function which returns a visitor for one or more node Types. Below is an example of a validation preventing the specific field name `
