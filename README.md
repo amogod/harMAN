@@ -390,4 +390,7 @@ import { GraphQLError } from 'graphql';
 export function DisallowMetadataQueries(context) {
   return {
     Field(node) {
-      const fieldName = node.name.v
+      const fieldName = node.name.value;
+
+      if (fieldName === 'metadata') {
+        context.repo
