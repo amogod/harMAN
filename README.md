@@ -393,4 +393,6 @@ export function DisallowMetadataQueries(context) {
       const fieldName = node.name.value;
 
       if (fieldName === 'metadata') {
-        context.repo
+        context.reportError(
+          new GraphQLError(
+            `Validation: Re
