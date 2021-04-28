@@ -406,4 +406,4 @@ export function DisallowMetadataQueries(context) {
 
 ### Disabling Introspection
 
-Disabling introspec
+Disabling introspection does not reflect best practices and does not necessarily mak
