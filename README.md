@@ -398,4 +398,12 @@ export function DisallowMetadataQueries(context) {
             `Validation: Requesting the field ${fieldName} is not allowed`,
           ),
         );
- 
+      }
+    },
+  };
+}
+```
+
+### Disabling Introspection
+
+Disabling introspec
