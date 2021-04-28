@@ -406,4 +406,5 @@ export function DisallowMetadataQueries(context) {
 
 ### Disabling Introspection
 
-Disabling introspection does not reflect best practices and does not necessarily mak
+Disabling introspection does not reflect best practices and does not necessarily make your
+application any more secure. Nevertheless, disabling introspection is po
