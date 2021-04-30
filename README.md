@@ -408,4 +408,8 @@ export function DisallowMetadataQueries(context) {
 
 Disabling introspection does not reflect best practices and does not necessarily make your
 application any more secure. Nevertheless, disabling introspection is possible by utilizing the
-`NoSchemaIntrospectionCustomRule` provided by the [graphql-js](https://github.com/graphql/graphql-js
+`NoSchemaIntrospectionCustomRule` provided by the [graphql-js](https://github.com/graphql/graphql-js)
+package.
+
+```js
+import { NoSchemaIntrospectionCustomRule 
