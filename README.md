@@ -412,4 +412,9 @@ application any more secure. Nevertheless, disabling introspection is possible b
 package.
 
 ```js
-import { NoSchemaIntrospectionCustomRule 
+import { NoSchemaIntrospectionCustomRule } from 'graphql';
+
+app.use(
+  mount(
+    '/graphql',
+    graphq
