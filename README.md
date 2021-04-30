@@ -407,4 +407,5 @@ export function DisallowMetadataQueries(context) {
 ### Disabling Introspection
 
 Disabling introspection does not reflect best practices and does not necessarily make your
-application any more secure. Nevertheless, disabling introspection is po
+application any more secure. Nevertheless, disabling introspection is possible by utilizing the
+`NoSchemaIntrospectionCustomRule`
