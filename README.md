@@ -422,4 +422,11 @@ app.use(
         schema: MyGraphQLSchema,
         validationRules: [NoSchemaIntrospectionCustomRule],
       };
-    }
+    }),
+  ),
+);
+```
+
+## Custom GraphiQL Themes
+
+To use custom GraphiQ
