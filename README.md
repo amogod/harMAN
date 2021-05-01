@@ -419,4 +419,7 @@ app.use(
     '/graphql',
     graphqlHTTP((request) => {
       return {
-        schema: MyGr
+        schema: MyGraphQLSchema,
+        validationRules: [NoSchemaIntrospectionCustomRule],
+      };
+    }
