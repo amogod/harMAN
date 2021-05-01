@@ -429,4 +429,5 @@ app.use(
 
 ## Custom GraphiQL Themes
 
-To use custom GraphiQ
+To use custom GraphiQL theme you should pass to `graphiql` option an object with
+the 
