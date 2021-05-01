@@ -417,4 +417,6 @@ import { NoSchemaIntrospectionCustomRule } from 'graphql';
 app.use(
   mount(
     '/graphql',
-    graphq
+    graphqlHTTP((request) => {
+      return {
+        schema: MyGr
