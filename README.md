@@ -430,4 +430,10 @@ app.use(
 ## Custom GraphiQL Themes
 
 To use custom GraphiQL theme you should pass to `graphiql` option an object with
-the property `editorTheme`. It could be a string with the name of a theme fr
+the property `editorTheme`. It could be a string with the name of a theme from `CodeMirror`
+
+```js
+router.all(
+  '/graphql',
+  graphqlHTTP({
+    schema
