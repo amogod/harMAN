@@ -436,4 +436,7 @@ the property `editorTheme`. It could be a string with the name of a theme from `
 router.all(
   '/graphql',
   graphqlHTTP({
-    schema
+    schema: MyGraphQLSchema,
+    graphiql: {
+      editorTheme: 'blackboard',
+    },
