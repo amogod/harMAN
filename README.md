@@ -430,4 +430,4 @@ app.use(
 ## Custom GraphiQL Themes
 
 To use custom GraphiQL theme you should pass to `graphiql` option an object with
-the 
+the property `editorTheme`. It could be a string with the name of a theme fr
