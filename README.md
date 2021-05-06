@@ -444,4 +444,6 @@ router.all(
 );
 ```
 
-[List of available CodeMirror themes](http
+[List of available CodeMirror themes](https://codemirror.net/demo/theme.html)
+
+or an object with `url` and `name` 
