@@ -440,3 +440,8 @@ router.all(
     graphiql: {
       editorTheme: 'blackboard',
     },
+  }),
+);
+```
+
+[List of available CodeMirror themes](http
