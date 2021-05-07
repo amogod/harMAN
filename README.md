@@ -448,4 +448,8 @@ router.all(
 
 or an object with `url` and `name` properties where `url` should lead to
 your custom theme and `name` would be passed to the `GraphiQL`
-react eleme
+react element on creation as the `editorTheme` property
+
+```js
+router.all(
+  '/graphq
