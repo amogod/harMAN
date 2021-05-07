@@ -447,4 +447,5 @@ router.all(
 [List of available CodeMirror themes](https://codemirror.net/demo/theme.html)
 
 or an object with `url` and `name` properties where `url` should lead to
-your custom theme and `n
+your custom theme and `name` would be passed to the `GraphiQL`
+react eleme
