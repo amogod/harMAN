@@ -452,4 +452,8 @@ react element on creation as the `editorTheme` property
 
 ```js
 router.all(
-  '/graphq
+  '/graphql',
+  graphqlHTTP({
+    schema: MyGraphQLSchema,
+    graphiql: {
+      
