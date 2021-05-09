@@ -456,4 +456,6 @@ router.all(
   graphqlHTTP({
     schema: MyGraphQLSchema,
     graphiql: {
-      
+      editorTheme: {
+        name: 'blackboard',
+        url: 'https:/
