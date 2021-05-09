@@ -458,4 +458,4 @@ router.all(
     graphiql: {
       editorTheme: {
         name: 'blackboard',
-        url: 'https:/
+        url: 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.53.2/theme/erl
