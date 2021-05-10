@@ -458,4 +458,11 @@ router.all(
     graphiql: {
       editorTheme: {
         name: 'blackboard',
-        url: 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.53.2/theme/erl
+        url: 'https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.53.2/theme/erlang-dark.css',
+      },
+    },
+  }),
+);
+```
+
+For details see the [Gr
