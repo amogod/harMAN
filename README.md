@@ -469,4 +469,4 @@ For details see the [GraphiQL spec](https://github.com/graphql/graphiql/tree/mas
 
 ## Additional Validation Rules
 
-GraphQL's [
+GraphQL's [validation phase](https://graphql.github.io/graphql-spec/#sec-Val
