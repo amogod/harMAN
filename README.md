@@ -465,4 +465,8 @@ router.all(
 );
 ```
 
-For details see the [GraphiQL spec](https://github.com/graphql/graphiql/tree/master/packages/
+For details see the [GraphiQL spec](https://github.com/graphql/graphiql/tree/master/packages/graphiql#applying-an-editor-theme)
+
+## Additional Validation Rules
+
+GraphQL's [
