@@ -465,4 +465,4 @@ router.all(
 );
 ```
 
-For details see the [Gr
+For details see the [GraphiQL spec](https://github.com/graphql/graphiql/tree/master/packages/
