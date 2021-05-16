@@ -476,4 +476,7 @@ A validation rule is a function which returns a visitor for one or more node Typ
 ```js
 import { GraphQLError } from 'graphql';
 
-export function DisallowMetadataQuer
+export function DisallowMetadataQueries(context) {
+  return {
+    Field(node) {
+      const fieldNa
