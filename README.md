@@ -474,4 +474,6 @@ GraphQL's [validation phase](https://graphql.github.io/graphql-spec/#sec-Validat
 A validation rule is a function which returns a visitor for one or more node Types. Below is an example of a validation preventing the specific field name `metadata` from being queried. For more examples see the [`specifiedRules`](https://github.com/graphql/graphql-js/tree/main/src/validation/rules) in the [graphql-js](https://github.com/graphql/graphql-js) package.
 
 ```js
-import { G
+import { GraphQLError } from 'graphql';
+
+export function DisallowMetadataQuer
