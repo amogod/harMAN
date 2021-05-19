@@ -484,4 +484,4 @@ export function DisallowMetadataQueries(context) {
       if (fieldName === 'metadata') {
         context.reportError(
           new GraphQLError(
-    
+            `Validation: Requesting the field ${fieldName} 
