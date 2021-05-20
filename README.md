@@ -493,4 +493,6 @@ export function DisallowMetadataQueries(context) {
 }
 ```
 
-## Debug
+## Debugging Tips
+
+During development, it's useful to get more information from erro
