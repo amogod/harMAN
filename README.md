@@ -499,4 +499,7 @@ During development, it's useful to get more information from errors, such as
 stack traces. Providing a function to `customFormatErrorFn` enables this:
 
 ```js
-customFormatErrorFn: (error, c
+customFormatErrorFn: (error, ctx) => ({
+  message: error.message,
+  locations: error.locations,
+  sta
