@@ -505,3 +505,8 @@ customFormatErrorFn: (error, ctx) => ({
   stack: error.stack ? error.stack.split('\n') : [],
   path: error.path,
 });
+```
+
+### Examples
+
+- [tests](https://github.com/graphql-commun
