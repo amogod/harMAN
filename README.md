@@ -496,4 +496,7 @@ export function DisallowMetadataQueries(context) {
 ## Debugging Tips
 
 During development, it's useful to get more information from errors, such as
-stack traces. Providing a function to `customForma
+stack traces. Providing a function to `customFormatErrorFn` enables this:
+
+```js
+customFormatErrorFn: (error, c
