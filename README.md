@@ -502,4 +502,6 @@ stack traces. Providing a function to `customFormatErrorFn` enables this:
 customFormatErrorFn: (error, ctx) => ({
   message: error.message,
   locations: error.locations,
-  sta
+  stack: error.stack ? error.stack.split('\n') : [],
+  path: error.path,
+});
