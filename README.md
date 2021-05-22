@@ -511,4 +511,6 @@ customFormatErrorFn: (error, ctx) => ({
 
 - [tests](https://github.com/graphql-community/koa-graphql/blob/main/src/__tests__/http-test.js)
 
-### Othe
+### Other Relevant Projects
+
+Please checkout [awesome-graphql](https://github.com/ch
