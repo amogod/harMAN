@@ -509,4 +509,6 @@ customFormatErrorFn: (error, ctx) => ({
 
 ### Examples
 
-- [tests](https://github.com/graphql-commun
+- [tests](https://github.com/graphql-community/koa-graphql/blob/main/src/__tests__/http-test.js)
+
+### Othe
