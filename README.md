@@ -519,4 +519,8 @@ Please checkout [awesome-graphql](https://github.com/chentsulin/awesome-graphql)
 
 Welcome pull requests!
 
-### Li
+### License
+
+MIT
+
+[`graphql-js`]: https://github.com/graphql/graphql
