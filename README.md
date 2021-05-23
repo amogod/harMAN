@@ -524,4 +524,6 @@ Welcome pull requests!
 MIT
 
 [`graphql-js`]: https://github.com/graphql/graphql-js
-[`formaterror`]: https://github.com/graphql/graphql-js/blob/main/src/error/formatErro
+[`formaterror`]: https://github.com/graphql/graphql-js/blob/main/src/error/formatError.js
+[graphiql]: https://github.com/graphql/graphiql
+[`m
