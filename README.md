@@ -513,4 +513,10 @@ customFormatErrorFn: (error, ctx) => ({
 
 ### Other Relevant Projects
 
-Please checkout [awesome-graphql](https://github.com/ch
+Please checkout [awesome-graphql](https://github.com/chentsulin/awesome-graphql).
+
+### Contributing
+
+Welcome pull requests!
+
+### Li
