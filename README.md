@@ -527,4 +527,4 @@ MIT
 [`formaterror`]: https://github.com/graphql/graphql-js/blob/main/src/error/formatError.js
 [graphiql]: https://github.com/graphql/graphiql
 [`multer`]: https://github.com/expressjs/multer
-[`koa-session`]: https:
+[`koa-session`]: https://github.com/koajs/session
