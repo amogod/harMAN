@@ -526,4 +526,5 @@ MIT
 [`graphql-js`]: https://github.com/graphql/graphql-js
 [`formaterror`]: https://github.com/graphql/graphql-js/blob/main/src/error/formatError.js
 [graphiql]: https://github.com/graphql/graphiql
-[`m
+[`multer`]: https://github.com/expressjs/multer
+[`koa-session`]: https:
