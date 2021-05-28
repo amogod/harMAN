@@ -8,4 +8,7 @@ parsers:
 
 comment: no
 coverage:
-  s
+  status:
+    project:
+      default:
+        target: auto
