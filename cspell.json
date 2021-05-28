@@ -21,3 +21,14 @@
     "noindex",
     "codecov",
     "recognise",
+    "serializable",
+    "subcommand",
+    "charsets",
+    "downlevel",
+
+    // TODO: remove bellow words
+    "Graphi", // GraphiQL
+    "QL's", // GraphQL's
+    "graphql's" // express-graphql's
+  ]
+}
