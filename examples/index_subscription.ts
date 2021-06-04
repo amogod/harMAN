@@ -10,4 +10,5 @@ import { graphqlHTTP } from '../src';
 
 import { schema, roots, rootValue } from './schema';
 
-const PORT =
+const PORT = 4000;
+const subscriptionEndpoint = `ws://localhost:${PORT}/subscrip
