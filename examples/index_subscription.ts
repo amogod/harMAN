@@ -6,4 +6,8 @@ import { execute, subscribe } from 'graphql';
 import ws from 'ws';
 import { useServer } from 'graphql-ws/lib/use/ws';
 
-import { graphqlHTTP } from '.
+import { graphqlHTTP } from '../src';
+
+import { schema, roots, rootValue } from './schema';
+
+const PORT =
