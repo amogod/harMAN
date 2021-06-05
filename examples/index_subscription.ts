@@ -22,4 +22,12 @@ app.use(
       rootValue,
       graphiql: {
         subscriptionEndpoint,
-        websocketClient: 'v1
+        websocketClient: 'v1',
+      },
+    }),
+  ),
+);
+
+const server = createServer(app.callback());
+
+const
