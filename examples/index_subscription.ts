@@ -16,4 +16,8 @@ const subscriptionEndpoint = `ws://localhost:${PORT}/subscriptions`;
 const app = new Koa();
 app.use(
   mount(
-    '/graphql'
+    '/graphql',
+    graphqlHTTP({
+      schema,
+      rootValue,
+      graphi
