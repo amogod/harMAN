@@ -39,4 +39,10 @@ server.listen(PORT, () => {
   useServer(
     {
       schema,
-     
+      roots,
+      execute,
+      subscribe,
+    },
+    wsServer,
+  );
+  co
