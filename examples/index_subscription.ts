@@ -30,4 +30,9 @@ app.use(
 
 const server = createServer(app.callback());
 
-const
+const wsServer = new ws.Server({
+  server,
+  path: '/subscriptions',
+});
+
+server.
