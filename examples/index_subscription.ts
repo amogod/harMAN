@@ -35,4 +35,8 @@ const wsServer = new ws.Server({
   path: '/subscriptions',
 });
 
-server.
+server.listen(PORT, () => {
+  useServer(
+    {
+      schema,
+     
