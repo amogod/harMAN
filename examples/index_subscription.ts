@@ -45,4 +45,5 @@ server.listen(PORT, () => {
     },
     wsServer,
   );
-  co
+  console.info(
+    `Running a GraphQL API server with sub
