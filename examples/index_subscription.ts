@@ -46,4 +46,5 @@ server.listen(PORT, () => {
     wsServer,
   );
   console.info(
-    `Running a GraphQL API server with sub
+    `Running a GraphQL API server with subscriptions at http://localhost:${PORT}/graphql`,
+  
