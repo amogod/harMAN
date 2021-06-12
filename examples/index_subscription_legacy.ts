@@ -1,14 +1,14 @@
+
 import { createServer } from 'http';
 
 import Koa from 'koa';
 import mount from 'koa-mount';
 import { execute, subscribe } from 'graphql';
-import ws from 'ws';
-import { useServer } from 'graphql-ws/lib/use/ws';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
 
 import { graphqlHTTP } from '../src';
 
-import { schema, roots, rootValue } from './schema';
+import { schema, rootValue } from './schema';
 
 const PORT = 4000;
 const subscriptionEndpoint = `ws://localhost:${PORT}/subscriptions`;
@@ -20,32 +20,30 @@ app.use(
     graphqlHTTP({
       schema,
       rootValue,
-      graphiql: {
-        subscriptionEndpoint,
-        websocketClient: 'v1',
-      },
+      graphiql: { subscriptionEndpoint },
     }),
   ),
 );
 
-const server = createServer(app.callback());
+const ws = createServer(app.callback());
 
-const wsServer = new ws.Server({
-  server,
-  path: '/subscriptions',
-});
-
-server.listen(PORT, () => {
-  useServer(
-    {
-      schema,
-      roots,
-      execute,
-      subscribe,
-    },
-    wsServer,
-  );
-  console.info(
+ws.listen(PORT, () => {
+  console.log(
     `Running a GraphQL API server with subscriptions at http://localhost:${PORT}/graphql`,
   );
 });
+
+const onConnect = (_: any, __: any) => {
+  console.log('connecting ....');
+};
+
+const onDisconnect = (_: any) => {
+  console.log('disconnecting ...');
+};
+
+SubscriptionServer.create(
+  {
+    schema,
+    rootValue,
+    execute,
+    subscribe,
