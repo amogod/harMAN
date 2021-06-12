@@ -47,3 +47,11 @@ SubscriptionServer.create(
     rootValue,
     execute,
     subscribe,
+    onConnect,
+    onDisconnect,
+  },
+  {
+    server: ws,
+    path: '/subscriptions',
+  },
+);
