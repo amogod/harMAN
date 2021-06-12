@@ -6,4 +6,6 @@ function sleep(ms: number) {
   });
 }
 
-export con
+export const schema = buildSchema(`
+type Query {
+    hello: St
