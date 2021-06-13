@@ -8,4 +8,11 @@ function sleep(ms: number) {
 
 export const schema = buildSchema(`
 type Query {
-    hello: St
+    hello: String
+}
+type Subscription {
+    countDown: Int
+}
+`);
+
+export const roots =
