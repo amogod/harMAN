@@ -15,4 +15,8 @@ type Subscription {
 }
 `);
 
-export const roots =
+export const roots = {
+  Query: {
+    hello: () => 'Hello World!',
+  },
+  subscript
