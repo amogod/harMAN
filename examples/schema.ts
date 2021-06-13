@@ -19,4 +19,7 @@ export const roots = {
   Query: {
     hello: () => 'Hello World!',
   },
-  subscript
+  subscription: {
+    /* eslint no-await-in-loop: "off" */
+
+    countDown: async
