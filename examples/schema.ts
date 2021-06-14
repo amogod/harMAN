@@ -23,4 +23,5 @@ export const roots = {
     /* eslint no-await-in-loop: "off" */
 
     countDown: async function* fiveToOne() {
-      for (const number of [5, 4, 
+      for (const number of [5, 4, 3, 2, 1]) {
+        await sleep(1000); // slow down a bit so user can see
