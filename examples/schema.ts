@@ -24,4 +24,11 @@ export const roots = {
 
     countDown: async function* fiveToOne() {
       for (const number of [5, 4, 3, 2, 1]) {
-        await sleep(1000); // slow down a bit so user can see
+        await sleep(1000); // slow down a bit so user can see the count down on GraphiQL
+        yield { countDown: number };
+      }
+    },
+  },
+};
+
+e
