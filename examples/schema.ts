@@ -22,4 +22,5 @@ export const roots = {
   subscription: {
     /* eslint no-await-in-loop: "off" */
 
-    countDown: async
+    countDown: async function* fiveToOne() {
+      for (const number of [5, 4, 
