@@ -33,4 +33,5 @@ export const roots = {
 
 export const rootValue = {
   hello: roots.Query.hello,
-  countDow
+  countDown: roots.subscription.countDown,
+};
