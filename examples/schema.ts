@@ -31,4 +31,6 @@ export const roots = {
   },
 };
 
-e
+export const rootValue = {
+  hello: roots.Query.hello,
+  countDow
