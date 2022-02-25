@@ -1,0 +1,60 @@
+
+{
+  "name": "koa-graphql",
+  "version": "0.12.0",
+  "description": "Production ready GraphQL Koa middleware.",
+  "contributors": [
+    "Lee Byron <lee@leebyron.com> (https://leebyron.com/)",
+    "Daniel Schafer <dschafer@fb.com>",
+    "C.T. Lin <chentsulin@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "main": "index.js",
+  "types": "index.d.ts",
+  "typesVersions": {
+    "<3.8": {
+      "*": [
+        "ts3.4/*"
+      ]
+    }
+  },
+  "sideEffects": false,
+  "homepage": "https://github.com/graphql-community/koa-graphql",
+  "bugs": {
+    "url": "https://github.com/graphql-community/koa-graphql/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/graphql-community/koa-graphql.git"
+  },
+  "keywords": [
+    "koa",
+    "http",
+    "graphql",
+    "middleware",
+    "api"
+  ],
+  "engines": {
+    "node": ">= 10.x"
+  },
+  "scripts": {
+    "preversion": ". ./resources/checkgit.sh && npm ci",
+    "version": "npm test",
+    "changelog": "node resources/gen-changelog.js",
+    "test": "npm run lint && npm run check && npm run testonly:cover && npm run prettier:check && npm run check:spelling && npm run build:npm",
+    "lint": "eslint .",
+    "check": "tsc --noEmit",
+    "testonly": "mocha --exit src/**/__tests__/**/*.ts",
+    "testonly:cover": "nyc npm run testonly",
+    "prettier": "prettier --write --list-different .",
+    "prettier:check": "prettier --check .",
+    "check:spelling": "cspell '**/*'",
+    "build:npm": "node resources/build-npm.js",
+    "start": "node -r ./resources/register.js examples/index.ts",
+    "start:subscription": "node -r ./resources/register.js examples/index_subscription.ts",
+    "start:subscription_legacy": "node -r ./resources/register.js examples/index_subscription_legacy.ts"
+  },
+  "dependencies": {
+    "@types/koa": "^2.13.4",
+    "express-graphql": "0.12.0",
