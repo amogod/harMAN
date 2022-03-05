@@ -1,3 +1,6 @@
 'use strict';
 
-const util 
+const util = require('util');
+const https = require('https');
+
+// eslint-disable-next-
