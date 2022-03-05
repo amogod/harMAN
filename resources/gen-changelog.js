@@ -6,4 +6,6 @@ const https = require('https');
 // eslint-disable-next-line import/extensions
 const packageJSON = require('../package.json');
 
-con
+const { exec } = require('./utils');
+
+const graphqlRequest = util.promis
