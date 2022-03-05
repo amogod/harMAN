@@ -2,4 +2,6 @@
 
 module.exports = {
   rules: {
-    'no-dir-import': require('./no-dir-import
+    'no-dir-import': require('./no-dir-import'),
+  },
+};
