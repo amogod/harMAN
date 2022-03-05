@@ -72,3 +72,6 @@ function buildPackageJSON() {
     assert(!packageJSON.publishConfig, 'Can not override "publishConfig".');
     packageJSON.publishConfig = { tag: tag || 'latest' };
   }
+
+  return packageJSON;
+}
