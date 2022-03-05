@@ -10,4 +10,8 @@ const { exec } = require('./utils');
 
 const graphqlRequest = util.promisify(graphqlRequestImpl);
 const labelsConfig = {
-  'PR: breaking ch
+  'PR: breaking change 💥': {
+    section: 'Breaking Change 💥',
+  },
+  'PR: feature 🚀': {
+    
