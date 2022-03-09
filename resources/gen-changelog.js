@@ -14,4 +14,7 @@ const labelsConfig = {
     section: 'Breaking Change 💥',
   },
   'PR: feature 🚀': {
-    
+    section: 'New Feature 🚀',
+  },
+  'PR: bug fix 🐞': {
+    section: 
