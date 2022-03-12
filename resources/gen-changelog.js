@@ -23,4 +23,6 @@ const labelsConfig = {
     section: 'Docs 📝',
     fold: true,
   },
-  'PR
+  'PR: polish 💅': {
+    section: 'Polish 💅',
+    fold: true
