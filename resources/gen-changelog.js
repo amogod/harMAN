@@ -29,4 +29,8 @@ const labelsConfig = {
   },
   'PR: internal 🏠': {
     section: 'Internal 🏠',
-    fold: t
+    fold: true,
+  },
+  'PR: dependency 📦': {
+    section: 'Dependency 📦',
+    fol
