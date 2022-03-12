@@ -25,4 +25,8 @@ const labelsConfig = {
   },
   'PR: polish 💅': {
     section: 'Polish 💅',
-    fold: true
+    fold: true,
+  },
+  'PR: internal 🏠': {
+    section: 'Internal 🏠',
+    fold: t
