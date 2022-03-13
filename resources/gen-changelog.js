@@ -33,4 +33,9 @@ const labelsConfig = {
   },
   'PR: dependency 📦': {
     section: 'Dependency 📦',
-    fol
+    fold: true,
+  },
+};
+const { GH_TOKEN } = process.env;
+
+if (!GH_TO
