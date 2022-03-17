@@ -38,4 +38,5 @@ const labelsConfig = {
 };
 const { GH_TOKEN } = process.env;
 
-if (!GH_TO
+if (!GH_TOKEN) {
+  console.error('Must provide GH_TOKEN as environment variab
