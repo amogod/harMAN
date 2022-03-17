@@ -39,4 +39,8 @@ const labelsConfig = {
 const { GH_TOKEN } = process.env;
 
 if (!GH_TOKEN) {
-  console.error('Must provide GH_TOKEN as environment variab
+  console.error('Must provide GH_TOKEN as environment variable!');
+  process.exit(1);
+}
+
+if (!packageJSON.repository || typeof packageJSON.rep
