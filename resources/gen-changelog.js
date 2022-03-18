@@ -45,4 +45,8 @@ if (!GH_TOKEN) {
 
 if (!packageJSON.repository || typeof packageJSON.repository.url !== 'string') {
   console.error('package.json is missing repository.url string!');
-  process.exit(1
+  process.exit(1);
+}
+
+const repoURLMatch =
+  /https:\/\/github.com\/(?<github
