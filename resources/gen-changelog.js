@@ -43,4 +43,5 @@ if (!GH_TOKEN) {
   process.exit(1);
 }
 
-if (!packageJSON.repository || typeof packageJSON.rep
+if (!packageJSON.repository || typeof packageJSON.repository.url !== 'string') {
+  console.error('package.json is m
