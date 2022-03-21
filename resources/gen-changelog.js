@@ -53,4 +53,5 @@ const repoURLMatch =
     packageJSON.repository.url,
   );
 if (repoURLMatch == null) {
-  console.error('
+  console.error('Cannot extract organization and repo name from repo URL!');
+  pro
