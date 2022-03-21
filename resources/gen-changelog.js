@@ -50,4 +50,7 @@ if (!packageJSON.repository || typeof packageJSON.repository.url !== 'string') {
 
 const repoURLMatch =
   /https:\/\/github.com\/(?<githubOrg>[^/]+)\/(?<githubRepo>[^/]+).git/.exec(
-    packageJSON.repository.
+    packageJSON.repository.url,
+  );
+if (repoURLMatch == null) {
+  console.error('
