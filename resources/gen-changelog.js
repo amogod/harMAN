@@ -49,4 +49,5 @@ if (!packageJSON.repository || typeof packageJSON.repository.url !== 'string') {
 }
 
 const repoURLMatch =
-  /https:\/\/github.com\/(?<github
+  /https:\/\/github.com\/(?<githubOrg>[^/]+)\/(?<githubRepo>[^/]+).git/.exec(
+    packageJSON.repository.
