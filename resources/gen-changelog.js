@@ -54,4 +54,6 @@ const repoURLMatch =
   );
 if (repoURLMatch == null) {
   console.error('Cannot extract organization and repo name from repo URL!');
-  pro
+  process.exit(1);
+}
+const { githubOrg, githubRepo } = repoURLMatch.groups;
