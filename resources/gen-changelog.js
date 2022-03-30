@@ -62,4 +62,8 @@ getChangeLog()
   .then((changelog) => process.stdout.write(changelog))
   .catch((error) => {
     console.error(error);
-    proc
+    process.exit(1);
+  });
+
+function getChangeLog() {
+  const { 
