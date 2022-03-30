@@ -59,4 +59,7 @@ if (repoURLMatch == null) {
 const { githubOrg, githubRepo } = repoURLMatch.groups;
 
 getChangeLog()
-  .then((changelog) => process.stdout.write(changel
+  .then((changelog) => process.stdout.write(changelog))
+  .catch((error) => {
+    console.error(error);
+    proc
