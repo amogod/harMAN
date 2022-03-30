@@ -69,4 +69,6 @@ function getChangeLog() {
   const { version } = packageJSON;
 
   let tag = null;
-  let commitsList = exec(
+  let commitsList = exec(`git rev-list --reverse v${version}..`);
+  if (commitsList === '') {
+   
