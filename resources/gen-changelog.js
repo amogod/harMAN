@@ -66,4 +66,7 @@ getChangeLog()
   });
 
 function getChangeLog() {
-  const { 
+  const { version } = packageJSON;
+
+  let tag = null;
+  let commitsList = exec(
