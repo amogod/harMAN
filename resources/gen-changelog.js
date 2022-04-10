@@ -71,4 +71,4 @@ function getChangeLog() {
   let tag = null;
   let commitsList = exec(`git rev-list --reverse v${version}..`);
   if (commitsList === '') {
-   
+    const parentPackageJSON = exec('git cat-file blob HEAD~1:packag
