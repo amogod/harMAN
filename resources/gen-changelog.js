@@ -79,4 +79,8 @@ function getChangeLog() {
 
   const date = exec('git log -1 --format=%cd --date=short');
   return getCommitsInfo(commitsList.split('\n'))
-    .then((commitsInfo) => getPRsInfo(commi
+    .then((commitsInfo) => getPRsInfo(commitsInfoToPRs(commitsInfo)))
+    .then((prsInfo) => genChangeLog(tag, date, prsInfo));
+}
+
+functio
