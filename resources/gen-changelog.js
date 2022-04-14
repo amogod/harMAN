@@ -77,4 +77,5 @@ function getChangeLog() {
     tag = `v${version}`;
   }
 
-  const
+  const date = exec('git log -1 --format=%cd --date=short');
+  return getCom
