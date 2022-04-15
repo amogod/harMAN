@@ -85,4 +85,7 @@ function getChangeLog() {
 
 function genChangeLog(tag, date, allPRs) {
   const byLabel = {};
-  co
+  const committersByLogin = {};
+
+  for (const pr of allPRs) {
+    const labels = pr.labe
