@@ -88,4 +88,6 @@ function genChangeLog(tag, date, allPRs) {
   const committersByLogin = {};
 
   for (const pr of allPRs) {
-    const labels = pr.labe
+    const labels = pr.labels.nodes
+      .map((label) => label.name)
+      .filter((label) => label.sta
