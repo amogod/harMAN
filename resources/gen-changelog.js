@@ -83,4 +83,6 @@ function getChangeLog() {
     .then((prsInfo) => genChangeLog(tag, date, prsInfo));
 }
 
-functio
+function genChangeLog(tag, date, allPRs) {
+  const byLabel = {};
+  co
