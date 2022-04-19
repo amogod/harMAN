@@ -93,4 +93,6 @@ function genChangeLog(tag, date, allPRs) {
       .filter((label) => label.startsWith('PR: '));
 
     if (labels.length === 0) {
-      throw new Error(`PR i
+      throw new Error(`PR is missing label. See ${pr.url}`);
+    }
+    if (labels.length
