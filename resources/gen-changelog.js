@@ -95,4 +95,6 @@ function genChangeLog(tag, date, allPRs) {
     if (labels.length === 0) {
       throw new Error(`PR is missing label. See ${pr.url}`);
     }
-    if (labels.length
+    if (labels.length > 1) {
+      throw new Error(
+        `PR has conflicting l
