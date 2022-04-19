@@ -90,4 +90,7 @@ function genChangeLog(tag, date, allPRs) {
   for (const pr of allPRs) {
     const labels = pr.labels.nodes
       .map((label) => label.name)
-      .filter((label) => label.sta
+      .filter((label) => label.startsWith('PR: '));
+
+    if (labels.length === 0) {
+      throw new Error(`PR i
