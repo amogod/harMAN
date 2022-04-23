@@ -97,4 +97,8 @@ function genChangeLog(tag, date, allPRs) {
     }
     if (labels.length > 1) {
       throw new Error(
-        `PR has conflicting l
+        `PR has conflicting labels: ${labels.join('\n')}\nSee ${pr.url}`,
+      );
+    }
+
+    c
