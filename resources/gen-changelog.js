@@ -101,4 +101,6 @@ function genChangeLog(tag, date, allPRs) {
       );
     }
 
-    c
+    const label = labels[0];
+    if (!labelsConfig[label]) {
+      throw new E
