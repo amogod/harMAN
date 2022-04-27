@@ -105,4 +105,6 @@ function genChangeLog(tag, date, allPRs) {
     if (!labelsConfig[label]) {
       throw new Error(`Unknown label: ${label}. See ${pr.url}`);
     }
-    byLabel[l
+    byLabel[label] = byLabel[label] || [];
+    byLabel[label].push(pr);
+    co
