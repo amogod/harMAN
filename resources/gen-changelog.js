@@ -110,4 +110,5 @@ function genChangeLog(tag, date, allPRs) {
     committersByLogin[pr.author.login] = pr.author;
   }
 
-  let changelog = `## ${
+  let changelog = `## ${tag || 'Unreleased'} (${date})\n`;
+  for (const [label, config] of O
