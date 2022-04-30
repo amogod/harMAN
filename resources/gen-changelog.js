@@ -113,4 +113,5 @@ function genChangeLog(tag, date, allPRs) {
   let changelog = `## ${tag || 'Unreleased'} (${date})\n`;
   for (const [label, config] of Object.entries(labelsConfig)) {
     const prs = byLabel[label];
-    if
+    if (prs) {
+      const shouldFold = config.fold && prs.length > 1
