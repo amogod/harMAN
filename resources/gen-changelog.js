@@ -107,4 +107,7 @@ function genChangeLog(tag, date, allPRs) {
     }
     byLabel[label] = byLabel[label] || [];
     byLabel[label].push(pr);
-    co
+    committersByLogin[pr.author.login] = pr.author;
+  }
+
+  let changelog = `## ${
