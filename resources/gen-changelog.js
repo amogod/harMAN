@@ -117,4 +117,6 @@ function genChangeLog(tag, date, allPRs) {
       const shouldFold = config.fold && prs.length > 1;
 
       changelog += `\n#### ${config.section}\n`;
-   
+      if (shouldFold) {
+        changelog += '<details>\n';
+        changelog 
