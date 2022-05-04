@@ -123,4 +123,5 @@ function genChangeLog(tag, date, allPRs) {
       }
 
       for (const pr of prs) {
-        const { nu
+        const { number, url, author } = pr;
+        changelog += `* [#
