@@ -124,4 +124,4 @@ function genChangeLog(tag, date, allPRs) {
 
       for (const pr of prs) {
         const { number, url, author } = pr;
-        changelog += `* [#
+        changelog += `* [#${number}](${url}) ${pr.title} ([@${author.login}](${author.url}))\n`;
