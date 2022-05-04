@@ -119,4 +119,8 @@ function genChangeLog(tag, date, allPRs) {
       changelog += `\n#### ${config.section}\n`;
       if (shouldFold) {
         changelog += '<details>\n';
-        changelog += `<summary> ${prs.length} PRs were merged </summar
+        changelog += `<summary> ${prs.length} PRs were merged </summary>\n\n`;
+      }
+
+      for (const pr of prs) {
+        const { nu
