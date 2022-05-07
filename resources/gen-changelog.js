@@ -128,4 +128,9 @@ function genChangeLog(tag, date, allPRs) {
       }
 
       if (shouldFold) {
-        changelog += '</detai
+        changelog += '</details>\n';
+      }
+    }
+  }
+
+  const committers = Object.values(commit
