@@ -133,4 +133,5 @@ function genChangeLog(tag, date, allPRs) {
     }
   }
 
-  const committers = Object.values(commit
+  const committers = Object.values(committersByLogin).sort((a, b) =>
+    (a.name || a.login).localeCom
