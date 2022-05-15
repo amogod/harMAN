@@ -138,3 +138,4 @@ function genChangeLog(tag, date, allPRs) {
   );
   changelog += `\n#### Committers: ${committers.length}\n`;
   for (const committer of committers) {
+    changelog += `* ${committer.name}([@${committer.login}](${committer.ur
