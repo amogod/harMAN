@@ -136,4 +136,5 @@ function genChangeLog(tag, date, allPRs) {
   const committers = Object.values(committersByLogin).sort((a, b) =>
     (a.name || a.login).localeCompare(b.name || b.login),
   );
-  changelog += `\n#### Committers: 
+  changelog += `\n#### Committers: ${committers.length}\n`;
+  for (const committer of committers) {
