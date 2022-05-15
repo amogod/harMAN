@@ -144,4 +144,5 @@ function genChangeLog(tag, date, allPRs) {
   return changelog;
 }
 
-function graphqlRequestImpl(query, 
+function graphqlRequestImpl(query, variables, cb) {
+  const resultCB = typeof variables === 'fun
