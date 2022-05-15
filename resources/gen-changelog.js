@@ -138,4 +138,10 @@ function genChangeLog(tag, date, allPRs) {
   );
   changelog += `\n#### Committers: ${committers.length}\n`;
   for (const committer of committers) {
-    changelog += `* ${committer.name}([@${committer.login}](${committer.ur
+    changelog += `* ${committer.name}([@${committer.login}](${committer.url}))\n`;
+  }
+
+  return changelog;
+}
+
+function graphqlRequestImpl(query, 
