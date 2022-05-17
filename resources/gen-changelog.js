@@ -147,4 +147,7 @@ function genChangeLog(tag, date, allPRs) {
 function graphqlRequestImpl(query, variables, cb) {
   const resultCB = typeof variables === 'function' ? variables : cb;
 
-  const req = https.request('https://api.githu
+  const req = https.request('https://api.github.com/graphql', {
+    method: 'POST',
+    headers: {
+      Authorization: 'b
