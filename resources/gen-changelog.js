@@ -150,4 +150,6 @@ function graphqlRequestImpl(query, variables, cb) {
   const req = https.request('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
-      Authorization: 'b
+      Authorization: 'bearer ' + GH_TOKEN,
+      'Content-Type': 'application/json',
+      '
