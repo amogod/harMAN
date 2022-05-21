@@ -152,4 +152,8 @@ function graphqlRequestImpl(query, variables, cb) {
     headers: {
       Authorization: 'bearer ' + GH_TOKEN,
       'Content-Type': 'application/json',
-      '
+      'User-Agent': 'gen-changelog',
+    },
+  });
+
+  req.on('response', (res) => {
