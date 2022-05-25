@@ -157,3 +157,7 @@ function graphqlRequestImpl(query, variables, cb) {
   });
 
   req.on('response', (res) => {
+    let responseBody = '';
+
+    res.setEncoding('utf8');
+   
