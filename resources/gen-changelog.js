@@ -161,4 +161,7 @@ function graphqlRequestImpl(query, variables, cb) {
 
     res.setEncoding('utf8');
     res.on('data', (d) => (responseBody += d));
-    res.on('error', (err
+    res.on('error', (error) => resultCB(error));
+
+    res.on('end', () => {
+   
