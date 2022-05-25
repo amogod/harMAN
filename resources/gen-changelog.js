@@ -164,4 +164,6 @@ function graphqlRequestImpl(query, variables, cb) {
     res.on('error', (error) => resultCB(error));
 
     res.on('end', () => {
-   
+      if (res.statusCode !== 200) {
+        return resultCB(
+          new 
