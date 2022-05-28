@@ -166,4 +166,5 @@ function graphqlRequestImpl(query, variables, cb) {
     res.on('end', () => {
       if (res.statusCode !== 200) {
         return resultCB(
-          new 
+          new Error(
+            `GitHub responded with ${res.statusCode}: ${res.status
