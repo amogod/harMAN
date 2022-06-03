@@ -173,3 +173,6 @@ function graphqlRequestImpl(query, variables, cb) {
         );
       }
 
+      let json;
+      try {
+        json = JSON.pars
