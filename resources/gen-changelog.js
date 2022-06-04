@@ -182,4 +182,8 @@ function graphqlRequestImpl(query, variables, cb) {
 
       if (json.errors) {
         return resultCB(
-         
+          new Error('Errors: ' + JSON.stringify(json.errors, null, 2)),
+        );
+      }
+
+   
