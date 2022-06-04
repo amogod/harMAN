@@ -178,4 +178,8 @@ function graphqlRequestImpl(query, variables, cb) {
         json = JSON.parse(responseBody);
       } catch (error) {
         return resultCB(error);
-      
+      }
+
+      if (json.errors) {
+        return resultCB(
+         
