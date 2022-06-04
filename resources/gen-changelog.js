@@ -186,4 +186,8 @@ function graphqlRequestImpl(query, variables, cb) {
         );
       }
 
-   
+      resultCB(undefined, json.data);
+    });
+  });
+
+  req.on('error', (e
