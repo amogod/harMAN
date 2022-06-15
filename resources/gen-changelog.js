@@ -196,3 +196,6 @@ function graphqlRequestImpl(query, variables, cb) {
 }
 
 async function batchCommitInfo(commits) {
+  let commitsSubQuery = '';
+  for (const oid of commits) {
+    commitsSubQ
