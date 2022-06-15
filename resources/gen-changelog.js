@@ -191,4 +191,8 @@ function graphqlRequestImpl(query, variables, cb) {
   });
 
   req.on('error', (error) => resultCB(error));
-  req.write(JSON.stringify({ query,
+  req.write(JSON.stringify({ query, variables }));
+  req.end();
+}
+
+async function batchCommitInfo(commits) {
