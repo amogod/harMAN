@@ -190,4 +190,5 @@ function graphqlRequestImpl(query, variables, cb) {
     });
   });
 
-  req.on('error', (e
+  req.on('error', (error) => resultCB(error));
+  req.write(JSON.stringify({ query,
