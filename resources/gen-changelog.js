@@ -200,4 +200,7 @@ async function batchCommitInfo(commits) {
   for (const oid of commits) {
     commitsSubQuery += `
         commit_${oid}: object(oid: "${oid}") {
-       
+          ... on Commit {
+            oid
+            message
+          
