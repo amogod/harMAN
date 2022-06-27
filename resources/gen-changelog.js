@@ -203,4 +203,6 @@ async function batchCommitInfo(commits) {
           ... on Commit {
             oid
             message
-          
+            associatedPullRequests(first: 10) {
+              nodes {
+   
