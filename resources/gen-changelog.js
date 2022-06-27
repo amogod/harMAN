@@ -207,4 +207,8 @@ async function batchCommitInfo(commits) {
               nodes {
                 number
                 repository {
-              
+                  nameWithOwner
+                }
+              }
+            }
+          
