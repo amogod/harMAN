@@ -205,4 +205,6 @@ async function batchCommitInfo(commits) {
             message
             associatedPullRequests(first: 10) {
               nodes {
-   
+                number
+                repository {
+              
