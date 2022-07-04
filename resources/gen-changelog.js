@@ -218,3 +218,4 @@ async function batchCommitInfo(commits) {
 
   const response = await graphqlRequest(`
     {
+      repository(owner: "${githubOrg}", name: "${githubRepo}") 
