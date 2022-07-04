@@ -211,4 +211,10 @@ async function batchCommitInfo(commits) {
                 }
               }
             }
-          
+          }
+        }
+    `;
+  }
+
+  const response = await graphqlRequest(`
+    {
