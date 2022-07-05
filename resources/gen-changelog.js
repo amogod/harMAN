@@ -226,4 +226,9 @@ async function batchCommitInfo(commits) {
 
   const commitsInfo = [];
   for (const oid of commits) {
-    commitsInfo.push(response.repository['com
+    commitsInfo.push(response.repository['commit_' + oid]);
+  }
+  return commitsInfo;
+}
+
+async function batchPRInfo(prs) {
