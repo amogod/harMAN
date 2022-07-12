@@ -234,4 +234,5 @@ async function batchCommitInfo(commits) {
 async function batchPRInfo(prs) {
   let prsSubQuery = '';
   for (const number of prs) {
-    prsSub
+    prsSubQuery += `
+        pr_${number}: pullRequest(n
