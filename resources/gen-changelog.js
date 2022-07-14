@@ -235,4 +235,8 @@ async function batchPRInfo(prs) {
   let prsSubQuery = '';
   for (const number of prs) {
     prsSubQuery += `
-        pr_${number}: pullRequest(n
+        pr_${number}: pullRequest(number: ${number}) {
+          number
+          title
+          url
+       
