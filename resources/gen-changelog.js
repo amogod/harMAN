@@ -239,4 +239,7 @@ async function batchPRInfo(prs) {
           number
           title
           url
-       
+          author {
+            login
+            url
+            ... on U
