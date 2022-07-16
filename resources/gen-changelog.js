@@ -252,4 +252,9 @@ async function batchPRInfo(prs) {
             }
           }
         }
-   
+    `;
+  }
+
+  const response = await graphqlRequest(`
+    {
+      repository(o
