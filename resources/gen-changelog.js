@@ -247,4 +247,9 @@ async function batchPRInfo(prs) {
             }
           }
           labels(first: 10) {
-            node
+            nodes {
+              name
+            }
+          }
+        }
+   
