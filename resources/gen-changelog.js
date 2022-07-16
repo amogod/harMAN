@@ -242,4 +242,9 @@ async function batchPRInfo(prs) {
           author {
             login
             url
-            ... on U
+            ... on User {
+              name
+            }
+          }
+          labels(first: 10) {
+            node
