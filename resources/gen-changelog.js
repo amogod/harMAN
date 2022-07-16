@@ -257,4 +257,4 @@ async function batchPRInfo(prs) {
 
   const response = await graphqlRequest(`
     {
-      repository(o
+      repository(owner: "${githubOrg}", name: "${githubRepo}") {
