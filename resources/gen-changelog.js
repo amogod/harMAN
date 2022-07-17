@@ -258,3 +258,9 @@ async function batchPRInfo(prs) {
   const response = await graphqlRequest(`
     {
       repository(owner: "${githubOrg}", name: "${githubRepo}") {
+        ${prsSubQuery}
+      }
+    }
+  `);
+
+  const prsInfo
