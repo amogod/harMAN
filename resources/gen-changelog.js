@@ -270,4 +270,7 @@ async function batchPRInfo(prs) {
   return prsInfo;
 }
 
-function commitsInfoToPRs(commi
+function commitsInfoToPRs(commits) {
+  const prs = {};
+  for (const commit of commits) {
+    cons
