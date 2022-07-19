@@ -265,4 +265,9 @@ async function batchPRInfo(prs) {
 
   const prsInfo = [];
   for (const number of prs) {
-    prsInfo.push(response.repository['
+    prsInfo.push(response.repository['pr_' + number]);
+  }
+  return prsInfo;
+}
+
+function commitsInfoToPRs(commi
