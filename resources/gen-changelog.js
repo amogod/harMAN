@@ -263,4 +263,6 @@ async function batchPRInfo(prs) {
     }
   `);
 
-  const prsInfo
+  const prsInfo = [];
+  for (const number of prs) {
+    prsInfo.push(response.repository['
