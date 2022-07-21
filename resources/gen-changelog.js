@@ -273,4 +273,5 @@ async function batchPRInfo(prs) {
 function commitsInfoToPRs(commits) {
   const prs = {};
   for (const commit of commits) {
-    cons
+    const associatedPRs = commit.associatedPullRequests.nodes.filter(
+   
