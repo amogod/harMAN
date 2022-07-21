@@ -275,4 +275,6 @@ function commitsInfoToPRs(commits) {
   for (const commit of commits) {
     const associatedPRs = commit.associatedPullRequests.nodes.filter(
       (pr) => pr.repository.nameWithOwner === `${githubOrg}/${githubRepo}`,
-  
+    );
+    if (associatedPRs.length === 0) {
+      const matc
