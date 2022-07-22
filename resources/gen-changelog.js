@@ -277,4 +277,5 @@ function commitsInfoToPRs(commits) {
       (pr) => pr.repository.nameWithOwner === `${githubOrg}/${githubRepo}`,
     );
     if (associatedPRs.length === 0) {
-      const matc
+      const match = / \(#(?<prNumber>[0-9]+)\)$/m.exec(commit.message);
+      if (ma
