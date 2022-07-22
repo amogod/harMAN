@@ -278,4 +278,7 @@ function commitsInfoToPRs(commits) {
     );
     if (associatedPRs.length === 0) {
       const match = / \(#(?<prNumber>[0-9]+)\)$/m.exec(commit.message);
-      if (ma
+      if (match) {
+        prs[parseInt(match.groups.prNumber, 10)] = true;
+        continue;
+ 
