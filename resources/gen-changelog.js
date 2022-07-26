@@ -281,4 +281,6 @@ function commitsInfoToPRs(commits) {
       if (match) {
         prs[parseInt(match.groups.prNumber, 10)] = true;
         continue;
- 
+      }
+      throw new Error(
+        `Commit ${commit.oid
