@@ -285,4 +285,7 @@ function commitsInfoToPRs(commits) {
       throw new Error(
         `Commit ${commit.oid} has no associated PR: ${commit.message}`,
       );
-   
+    }
+    if (associatedPRs.length > 1) {
+      throw new Error(
+        `Co
