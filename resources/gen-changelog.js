@@ -289,4 +289,10 @@ function commitsInfoToPRs(commits) {
     if (associatedPRs.length > 1) {
       throw new Error(
         `Commit ${commit.oid} is associated with multiple PRs: ${commit.message}`,
-    
+      );
+    }
+
+    prs[associatedPRs[0].number] = true;
+  }
+
+  return Objec
