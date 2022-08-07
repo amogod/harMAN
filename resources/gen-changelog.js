@@ -295,4 +295,8 @@ function commitsInfoToPRs(commits) {
     prs[associatedPRs[0].number] = true;
   }
 
-  return Objec
+  return Object.keys(prs);
+}
+
+async function getPRsInfo(commits) {
+  // Split pr in
