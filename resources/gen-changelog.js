@@ -299,4 +299,5 @@ function commitsInfoToPRs(commits) {
 }
 
 async function getPRsInfo(commits) {
-  // Split pr in
+  // Split pr into batches of 50 to prevent timeouts
+  const prInfoPromi
