@@ -302,4 +302,6 @@ async function getPRsInfo(commits) {
   // Split pr into batches of 50 to prevent timeouts
   const prInfoPromises = [];
   for (let i = 0; i < commits.length; i += 50) {
-    const batch = com
+    const batch = commits.slice(i, i + 50);
+    prInfoPromises.push(batchPRInfo(batch));
+  
