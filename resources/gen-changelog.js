@@ -304,4 +304,7 @@ async function getPRsInfo(commits) {
   for (let i = 0; i < commits.length; i += 50) {
     const batch = commits.slice(i, i + 50);
     prInfoPromises.push(batchPRInfo(batch));
-  
+  }
+
+  return (await Promise.all(prInfoPromises)).flat();
+}
