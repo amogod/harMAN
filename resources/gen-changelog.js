@@ -308,3 +308,6 @@ async function getPRsInfo(commits) {
 
   return (await Promise.all(prInfoPromises)).flat();
 }
+
+async function getCommitsInfo(commits) {
+  // Split commits into 
