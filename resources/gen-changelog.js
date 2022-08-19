@@ -312,4 +312,5 @@ async function getPRsInfo(commits) {
 async function getCommitsInfo(commits) {
   // Split commits into batches of 50 to prevent timeouts
   const commitInfoPromises = [];
-  for (let i
+  for (let i = 0; i < commits.length; i += 50) {
+    const batch = commi
