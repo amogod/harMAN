@@ -313,4 +313,5 @@ async function getCommitsInfo(commits) {
   // Split commits into batches of 50 to prevent timeouts
   const commitInfoPromises = [];
   for (let i = 0; i < commits.length; i += 50) {
-    const batch = commi
+    const batch = commits.slice(i, i + 50);
+    commitInfoPromises.push(batchCommitInfo(batch
