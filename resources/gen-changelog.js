@@ -314,4 +314,8 @@ async function getCommitsInfo(commits) {
   const commitInfoPromises = [];
   for (let i = 0; i < commits.length; i += 50) {
     const batch = commits.slice(i, i + 50);
-    commitInfoPromises.push(batchCommitInfo(batch
+    commitInfoPromises.push(batchCommitInfo(batch));
+  }
+
+  return (await Promise.all(commitInfoPromises)).flat();
+}
