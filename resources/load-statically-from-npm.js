@@ -2,4 +2,9 @@
 
 const fs = require('fs');
 
-const ts = require('typescript'
+const ts = require('typescript');
+
+/**
+ * Transforms:
+ *
+ *  loadFileStaticallyFromNPM(<npm pa
