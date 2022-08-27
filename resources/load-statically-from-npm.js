@@ -14,4 +14,6 @@ const ts = require('typescript');
  *  "<file content>"
  */
 module.exports.transformLoadFileStaticallyFromNPM = function (context) {
-  return fun
+  return function visit(node) {
+    if (ts.isCallExpression(node)) {
+      if
