@@ -13,4 +13,5 @@ const ts = require('typescript');
  *
  *  "<file content>"
  */
-module.expo
+module.exports.transformLoadFileStaticallyFromNPM = function (context) {
+  return fun
