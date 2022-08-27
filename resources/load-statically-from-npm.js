@@ -7,4 +7,10 @@ const ts = require('typescript');
 /**
  * Transforms:
  *
- *  loadFileStaticallyFromNPM(<npm pa
+ *  loadFileStaticallyFromNPM(<npm path>)
+ *
+ * to:
+ *
+ *  "<file content>"
+ */
+module.expo
