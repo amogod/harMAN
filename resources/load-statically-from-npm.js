@@ -21,4 +21,5 @@ module.exports.transformLoadFileStaticallyFromNPM = function (context) {
         node.expression.text === 'loadFileStaticallyFromNPM'
       ) {
         const npmPath = node.arguments[0].text;
-        const filePath = require.reso
+        const filePath = require.resolve(npmPath);
+        const content = fs.readFileSync(fil
