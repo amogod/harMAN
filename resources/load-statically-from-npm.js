@@ -20,4 +20,5 @@ module.exports.transformLoadFileStaticallyFromNPM = function (context) {
         ts.isIdentifier(node.expression) &&
         node.expression.text === 'loadFileStaticallyFromNPM'
       ) {
-        const npmPath = 
+        const npmPath = node.arguments[0].text;
+        const filePath = require.reso
