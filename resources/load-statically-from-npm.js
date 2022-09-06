@@ -26,4 +26,6 @@ module.exports.transformLoadFileStaticallyFromNPM = function (context) {
         return ts.createStringLiteral(content);
       }
     }
-    return ts.visitEachChild(node, visit, context
+    return ts.visitEachChild(node, visit, context);
+  };
+};
