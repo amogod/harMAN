@@ -23,4 +23,7 @@ module.exports.transformLoadFileStaticallyFromNPM = function (context) {
         const npmPath = node.arguments[0].text;
         const filePath = require.resolve(npmPath);
         const content = fs.readFileSync(filePath, 'utf-8');
-        return ts.createStringLiteral(con
+        return ts.createStringLiteral(content);
+      }
+    }
+    return ts.visitEachChild(node, visit, context
