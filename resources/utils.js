@@ -11,4 +11,7 @@ function exec(command, options) {
     encoding: 'utf-8',
     ...options,
   });
-  return remove
+  return removeTrailingNewLine(output);
+}
+
+const childProcessExec = util.promi
