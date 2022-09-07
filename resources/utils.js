@@ -7,4 +7,8 @@ const childProcess = require('child_process');
 
 function exec(command, options) {
   const output = childProcess.execSync(command, {
-    maxBuffer: 10 * 1024 * 1024, 
+    maxBuffer: 10 * 1024 * 1024, // 10MB
+    encoding: 'utf-8',
+    ...options,
+  });
+  return remove
