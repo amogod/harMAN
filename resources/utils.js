@@ -6,4 +6,5 @@ const path = require('path');
 const childProcess = require('child_process');
 
 function exec(command, options) {
-  const ou
+  const output = childProcess.execSync(command, {
+    maxBuffer: 10 * 1024 * 1024, 
