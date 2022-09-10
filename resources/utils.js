@@ -14,4 +14,6 @@ function exec(command, options) {
   return removeTrailingNewLine(output);
 }
 
-const childProcessExec = util.promi
+const childProcessExec = util.promisify(childProcess.exec);
+async function execAsync(command, options) {
+  con
