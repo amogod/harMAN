@@ -24,4 +24,9 @@ async function execAsync(command, options) {
   return removeTrailingNewLine(output.stdout);
 }
 
-function removeTrailingNewLin
+function removeTrailingNewLine(str) {
+  if (str == null) {
+    return str;
+  }
+
+  return str.split('\n').slice(0
