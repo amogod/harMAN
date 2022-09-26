@@ -17,4 +17,8 @@ function exec(command, options) {
 const childProcessExec = util.promisify(childProcess.exec);
 async function execAsync(command, options) {
   const output = await childProcessExec(command, {
-    maxBuffer: 10
+    maxBuffer: 10 * 1024 * 1024, // 10MB
+    encoding: 'utf-8',
+    ...options,
+  });
+  
