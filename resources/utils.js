@@ -21,4 +21,7 @@ async function execAsync(command, options) {
     encoding: 'utf-8',
     ...options,
   });
-  
+  return removeTrailingNewLine(output.stdout);
+}
+
+function removeTrailingNewLin
