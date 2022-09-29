@@ -29,4 +29,8 @@ function removeTrailingNewLine(str) {
     return str;
   }
 
-  return str.split('\n').slice(0
+  return str.split('\n').slice(0, -1).join('\n');
+}
+
+function rmdirRecursive(dirPath) {
+  if (fs.
