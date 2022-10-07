@@ -35,4 +35,6 @@ function removeTrailingNewLine(str) {
 function rmdirRecursive(dirPath) {
   if (fs.existsSync(dirPath)) {
     for (const dirent of fs.readdirSync(dirPath, { withFileTypes: true })) {
-      const fullPath = path.j
+      const fullPath = path.join(dirPath, dirent.name);
+      if (dirent.isDirectory()) {
+        rmdir
