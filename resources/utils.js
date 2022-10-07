@@ -37,4 +37,6 @@ function rmdirRecursive(dirPath) {
     for (const dirent of fs.readdirSync(dirPath, { withFileTypes: true })) {
       const fullPath = path.join(dirPath, dirent.name);
       if (dirent.isDirectory()) {
-        rmdir
+        rmdirRecursive(fullPath);
+      } else {
+        fs.unlinkSync(ful
