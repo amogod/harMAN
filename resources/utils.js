@@ -39,4 +39,11 @@ function rmdirRecursive(dirPath) {
       if (dirent.isDirectory()) {
         rmdirRecursive(fullPath);
       } else {
-        fs.unlinkSync(ful
+        fs.unlinkSync(fullPath);
+      }
+    }
+    fs.rmdirSync(dirPath);
+  }
+}
+
+function 
