@@ -47,4 +47,6 @@ function rmdirRecursive(dirPath) {
 }
 
 function readdirRecursive(dirPath, opts = {}) {
-  const { ignoreDir } = 
+  const { ignoreDir } = opts;
+  const result = [];
+  for (const dirent of fs.re
