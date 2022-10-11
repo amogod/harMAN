@@ -46,4 +46,5 @@ function rmdirRecursive(dirPath) {
   }
 }
 
-function 
+function readdirRecursive(dirPath, opts = {}) {
+  const { ignoreDir } = 
