@@ -49,4 +49,5 @@ function rmdirRecursive(dirPath) {
 function readdirRecursive(dirPath, opts = {}) {
   const { ignoreDir } = opts;
   const result = [];
-  for (const dirent of fs.re
+  for (const dirent of fs.readdirSync(dirPath, { withFileTypes: true })) {
+    const nam
