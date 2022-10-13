@@ -52,4 +52,8 @@ function readdirRecursive(dirPath, opts = {}) {
   for (const dirent of fs.readdirSync(dirPath, { withFileTypes: true })) {
     const name = dirent.name;
     if (!dirent.isDirectory()) {
-      result.push(dirent.name
+      result.push(dirent.name);
+      continue;
+    }
+
+    if (ignoreDir && ignoreDir.test
