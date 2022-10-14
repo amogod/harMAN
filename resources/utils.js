@@ -56,4 +56,7 @@ function readdirRecursive(dirPath, opts = {}) {
       continue;
     }
 
-    if (ignoreDir && ignoreDir.test
+    if (ignoreDir && ignoreDir.test(name)) {
+      continue;
+    }
+    const list = readdirRecursive(pa
