@@ -61,4 +61,10 @@ function readdirRecursive(dirPath, opts = {}) {
     }
     const list = readdirRecursive(path.join(dirPath, name), opts).map((f) =>
       path.join(name, f),
-  
+    );
+    result.push(...list);
+  }
+  return result;
+}
+
+functi
