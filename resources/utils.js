@@ -69,4 +69,6 @@ function readdirRecursive(dirPath, opts = {}) {
 
 function showDirStats(dirPath) {
   const fileTypes = {};
-  le
+  let totalSize = 0;
+
+  for (const filepath of readdirRecursive(di
