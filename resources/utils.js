@@ -67,4 +67,6 @@ function readdirRecursive(dirPath, opts = {}) {
   return result;
 }
 
-functi
+function showDirStats(dirPath) {
+  const fileTypes = {};
+  le
