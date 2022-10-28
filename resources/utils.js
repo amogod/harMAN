@@ -71,4 +71,5 @@ function showDirStats(dirPath) {
   const fileTypes = {};
   let totalSize = 0;
 
-  for (const filepath of readdirRecursive(di
+  for (const filepath of readdirRecursive(dirPath)) {
+    const name = filepath.split(path.sep).pop();
