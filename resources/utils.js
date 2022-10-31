@@ -76,4 +76,5 @@ function showDirStats(dirPath) {
     const [base, ...splitExt] = name.split('.');
     const ext = splitExt.join('.');
 
-    const filetype = ext ? '*.' + ext :
+    const filetype = ext ? '*.' + ext : base;
+    fileTypes[filetype] = fileTypes[filetype] || { filepaths: [], size:
