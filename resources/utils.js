@@ -74,4 +74,6 @@ function showDirStats(dirPath) {
   for (const filepath of readdirRecursive(dirPath)) {
     const name = filepath.split(path.sep).pop();
     const [base, ...splitExt] = name.split('.');
-    cons
+    const ext = splitExt.join('.');
+
+    const filetype = ext ? '*.' + ext :
