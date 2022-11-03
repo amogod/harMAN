@@ -85,4 +85,5 @@ function showDirStats(dirPath) {
     fileTypes[filetype].filepaths.push(filepath);
   }
 
-  let stats
+  let stats = [];
+  for (const [filetype, typeStats] of Object.entries(fileTypes
