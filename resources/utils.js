@@ -82,4 +82,7 @@ function showDirStats(dirPath) {
     const { size } = fs.lstatSync(path.join(dirPath, filepath));
     totalSize += size;
     fileTypes[filetype].size += size;
-    
+    fileTypes[filetype].filepaths.push(filepath);
+  }
+
+  let stats
