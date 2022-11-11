@@ -90,4 +90,6 @@ function showDirStats(dirPath) {
     const numFiles = typeStats.filepaths.length;
 
     if (numFiles > 1) {
-      stats.push([filetype + ' x' + numFiles, typeStats.
+      stats.push([filetype + ' x' + numFiles, typeStats.size]);
+    } else {
+      stats.push([typeStats.filepaths[0],
