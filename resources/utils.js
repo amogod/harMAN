@@ -96,4 +96,4 @@ function showDirStats(dirPath) {
     }
   }
   stats.sort((a, b) => b[1] - a[1]);
-  stats = 
+  stats = stats.map(([type, size]) => [type, (size / 1024).toFixed(2) + '
