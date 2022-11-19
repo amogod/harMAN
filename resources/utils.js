@@ -96,4 +96,6 @@ function showDirStats(dirPath) {
     }
   }
   stats.sort((a, b) => b[1] - a[1]);
-  stats = stats.map(([type, size]) => [type, (size / 1024).toFixed(2) + '
+  stats = stats.map(([type, size]) => [type, (size / 1024).toFixed(2) + ' KB']);
+
+  const typeMaxLength = Math.max(...stats.map((x) => x[
