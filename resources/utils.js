@@ -106,4 +106,4 @@ function showDirStats(dirPath) {
     );
   }
 
-  console.log('-'.re
+  console.log('-'.repeat(typeMaxLength + 3 + sizeMaxLength));
