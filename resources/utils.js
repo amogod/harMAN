@@ -101,4 +101,5 @@ function showDirStats(dirPath) {
   const typeMaxLength = Math.max(...stats.map((x) => x[0].length));
   const sizeMaxLength = Math.max(...stats.map((x) => x[1].length));
   for (const [type, size] of stats) {
- 
+    console.log(
+      type.padStart(typeMaxLength) + ' | ' + size.pa
