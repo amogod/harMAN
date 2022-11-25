@@ -116,4 +116,7 @@ function showDirStats(dirPath) {
 module.exports = {
   exec,
   execAsync,
-  rmdirRecu
+  rmdirRecursive,
+  readdirRecursive,
+  showDirStats,
+};
