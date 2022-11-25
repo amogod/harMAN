@@ -109,4 +109,11 @@ function showDirStats(dirPath) {
   console.log('-'.repeat(typeMaxLength + 3 + sizeMaxLength));
   const totalMB = (totalSize / 1024 / 1024).toFixed(2) + ' MB';
   console.log(
-    'Total'.padStart(typeMaxLength) + ' | ' + totalMB.padSta
+    'Total'.padStart(typeMaxLength) + ' | ' + totalMB.padStart(sizeMaxLength),
+  );
+}
+
+module.exports = {
+  exec,
+  execAsync,
+  rmdirRecu
