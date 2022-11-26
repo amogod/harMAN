@@ -4,4 +4,5 @@ import multer from 'multer';
 import type Koa from 'koa';
 
 export default function multerWrapper(options?: multer.Options | undefined) {
-  const up
+  const upload = multer(options);
+  const uploadSingle = upload.single.bind(u
