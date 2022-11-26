@@ -1,3 +1,6 @@
 import { promisify } from 'util';
 
-i
+import multer from 'multer';
+import type Koa from 'koa';
+
+export default f
