@@ -5,4 +5,8 @@ import type Koa from 'koa';
 
 export default function multerWrapper(options?: multer.Options | undefined) {
   const upload = multer(options);
-  const uploadSingle = upload.single.bind(u
+  const uploadSingle = upload.single.bind(upload);
+
+  return {
+    ...upload,
+    single(...args: Paramete
