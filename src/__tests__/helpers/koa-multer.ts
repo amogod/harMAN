@@ -9,4 +9,5 @@ export default function multerWrapper(options?: multer.Options | undefined) {
 
   return {
     ...upload,
-    single(...args: Paramete
+    single(...args: Parameters<typeof upload.single>): Koa.Middleware {
+      return async functi
