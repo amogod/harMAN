@@ -13,4 +13,5 @@ export default function multerWrapper(options?: multer.Options | undefined) {
       return async function (ctx: Koa.Context, next: Koa.Next) {
         const promisifiedUploadSingle = promisify(uploadSingle(...args));
 
-        await promisifi
+        await promisifiedUploadSingle(ctx.req as any, ctx.res as any);
+        return 
