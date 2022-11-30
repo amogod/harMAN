@@ -14,4 +14,8 @@ export default function multerWrapper(options?: multer.Options | undefined) {
         const promisifiedUploadSingle = promisify(uploadSingle(...args));
 
         await promisifiedUploadSingle(ctx.req as any, ctx.res as any);
-        return 
+        return next();
+      };
+    },
+  };
+}
