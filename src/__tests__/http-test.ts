@@ -119,3 +119,69 @@ const TestSchema = new GraphQLSchema({
 
 function stringifyURLParams(urlParams?: { [param: string]: string }): string {
   return new URLSearchParams(urlParams).toString();
+}
+
+function urlString(urlParams?: { [param: string]: string }): string {
+  let string = '/graphql';
+  if (urlParams) {
+    string += '?' + stringifyURLParams(urlParams);
+  }
+  return string;
+}
+
+function server<StateT = Koa.DefaultState, ContextT = Koa.DefaultContext>() {
+  const app = new Koa<StateT, ContextT>();
+
+  /* istanbul ignore next Error handler added only for debugging failed tests */
+  app.on('error', (error) => {
+    // eslint-disable-next-line no-console
+    console.warn('App encountered an error:', error);
+  });
+
+  return app;
+}
+
+describe('GraphQL-HTTP tests', () => {
+  describe('GET functionality', () => {
+    it('allows GET with query param', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{test}',
+        }),
+      );
+
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
+
+    it('allows GET with variable values', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: 'query helloWho($who: String){ test(who: $who) }',
+          variables: JSON.stringify({ who: 'Dolly' }),
+        }),
+      );
+
+      expect(response.text).to.equal('{"data":{"test":"Hello Dolly"}}');
+    });
