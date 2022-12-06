@@ -185,3 +185,85 @@ describe('GraphQL-HTTP tests', () => {
 
       expect(response.text).to.equal('{"data":{"test":"Hello Dolly"}}');
     });
+
+    it('allows GET with operation name', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: `
+            query helloYou { test(who: "You"), ...shared }
+            query helloWorld { test(who: "World"), ...shared }
+            query helloDolly { test(who: "Dolly"), ...shared }
+            fragment shared on QueryRoot {
+              shared: test(who: "Everyone")
+            }
+          `,
+          operationName: 'helloWorld',
+        }),
+      );
+
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: {
+          test: 'Hello World',
+          shared: 'Hello Everyone',
+        },
+      });
+    });
+
+    it('Reports validation errors', async () => {
+      const app = server();
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{ test, unknownOne, unknownTwo }',
+        }),
+      );
+
+      expect(response.status).to.equal(400);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message: 'Cannot query field "unknownOne" on type "QueryRoot".',
+            locations: [{ line: 1, column: 9 }],
+          },
+          {
+            message: 'Cannot query field "unknownTwo" on type "QueryRoot".',
+            locations: [{ line: 1, column: 21 }],
+          },
+        ],
+      });
+    });
+
+    it('Errors when missing operation name', async () => {
+      const app = server();
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: `
+            query TestQuery { test }
+            mutation TestMutation { writeTest { test } }
+          `,
+        }),
+      );
+
+      expect(response.status).to.equal(500);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message:
+              'Must provide operation name if query contains multiple operations.',
+          },
