@@ -267,3 +267,61 @@ describe('GraphQL-HTTP tests', () => {
             message:
               'Must provide operation name if query contains multiple operations.',
           },
+        ],
+      });
+    });
+
+    it('Errors when sending a mutation via GET', async () => {
+      const app = server();
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: 'mutation TestMutation { writeTest { test } }',
+        }),
+      );
+
+      expect(response.status).to.equal(405);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message:
+              'Can only perform a mutation operation from a POST request.',
+          },
+        ],
+      });
+    });
+
+    it('Errors when selecting a mutation within a GET', async () => {
+      const app = server();
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const response = await request(app.listen()).get(
+        urlString({
+          operationName: 'TestMutation',
+          query: `
+            query TestQuery { test }
+            mutation TestMutation { writeTest { test } }
+          `,
+        }),
+      );
+
+      expect(response.status).to.equal(405);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message:
+              'Can only perform a mutation operation from a POST request.',
+          },
+        ],
+      });
+    });
+
+    it('Allows a mutation to exist within a GET', async () => {
+      const app = server();
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const response = await request(app.listen()).get(
