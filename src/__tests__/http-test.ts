@@ -495,3 +495,80 @@ describe('GraphQL-HTTP tests', () => {
       const app = server();
 
       // Middleware that adds ctx.foo to every request
+      app.use((ctx, next) => {
+        ctx.foo = 'bar';
+        return next();
+      });
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{ test }',
+        }),
+      );
+
+      expect(response.status).to.equal(200);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: {
+          test: 'bar',
+        },
+      });
+    });
+
+    it('Allows returning an options Promise', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP(() =>
+            Promise.resolve({
+              schema: TestSchema,
+            }),
+          ),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{test}',
+        }),
+      );
+
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
+
+    it('Provides an options function with arguments', async () => {
+      const app = server();
+
+      let seenRequest;
+      let seenResponse;
+      let seenContext;
+      let seenParams;
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP((req, res, ctx, params) => {
+            seenRequest = req;
+            seenResponse = res;
+            seenContext = ctx;
+            seenParams = params;
+            return { schema: TestSchema };
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{test}',
+        }),
+      );
