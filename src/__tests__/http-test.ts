@@ -830,3 +830,70 @@ describe('GraphQL-HTTP tests', () => {
               shared: test(who: "Everyone")
             }
           `,
+          operationName: 'helloWorld',
+        });
+
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: {
+          test: 'Hello World',
+          shared: 'Hello Everyone',
+        },
+      });
+    });
+
+    it('allows POST with GET operation name', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(
+          urlString({
+            operationName: 'helloWorld',
+          }),
+        )
+        .set('Content-Type', 'application/graphql').send(`
+          query helloYou { test(who: "You"), ...shared }
+          query helloWorld { test(who: "World"), ...shared }
+          query helloDolly { test(who: "Dolly"), ...shared }
+          fragment shared on QueryRoot {
+            shared: test(who: "Everyone")
+          }
+        `);
+
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: {
+          test: 'Hello World',
+          shared: 'Hello Everyone',
+        },
+      });
+    });
+
+    it('allows other UTF charsets', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const req = request(app.listen())
+        .post(urlString())
+        .set('Content-Type', 'application/graphql; charset=utf-16');
+      req.write(Buffer.from('{ test(who: "World") }', 'utf16le'));
+      const response = await req;
+
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: {
+          test: 'Hello World',
