@@ -964,3 +964,74 @@ describe('GraphQL-HTTP tests', () => {
       // together.
 
       // A simple schema which includes a mutation.
+      const UploadedFileType = new GraphQLObjectType({
+        name: 'UploadedFile',
+        fields: {
+          originalname: { type: GraphQLString },
+          mimetype: { type: GraphQLString },
+        },
+      });
+
+      const TestMutationSchema = new GraphQLSchema({
+        query: new GraphQLObjectType({
+          name: 'QueryRoot',
+          fields: {
+            test: { type: GraphQLString },
+          },
+        }),
+        mutation: new GraphQLObjectType({
+          name: 'MutationRoot',
+          fields: {
+            uploadFile: {
+              type: UploadedFileType,
+              resolve(rootValue) {
+                // For this test demo, we're just returning the uploaded
+                // file directly, but presumably you might return a Promise
+                // to go store the file somewhere first.
+                return rootValue.request.file;
+              },
+            },
+          },
+        }),
+      });
+
+      const app = server();
+
+      // Multer provides multipart form data parsing.
+      const storage = multer.memoryStorage();
+      app.use(mount(urlString(), multerWrapper({ storage }).single('file')));
+
+      // Providing the request as part of `rootValue` allows it to
+      // be accessible from within Schema resolve functions.
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP((_req, _res, ctx) => {
+            expect(ctx.req.file?.originalname).to.equal('test.txt');
+            return {
+              schema: TestMutationSchema,
+              rootValue: { request: ctx.req },
+            };
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(urlString())
+        .field(
+          'query',
+          `mutation TestMutation {
+          uploadFile { originalname, mimetype }
+        }`,
+        )
+        .attach('file', Buffer.from('test'), 'test.txt');
+
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: {
+          uploadFile: {
+            originalname: 'test.txt',
+            mimetype: 'text/plain',
+          },
+        },
+      });
+    });
