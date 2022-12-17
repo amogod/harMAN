@@ -1085,3 +1085,68 @@ describe('GraphQL-HTTP tests', () => {
 
     it('does not accept unknown pre-parsed POST raw Buffer', async () => {
       const app = server();
+      app.use(async (ctx, next) => {
+        if (typeof ctx.is('*/*') === 'string') {
+          const req = ctx.req;
+          // eslint-disable-next-line require-atomic-updates
+          ctx.request.body = await getRawBody(req, {
+            length: req.headers['content-length'],
+            limit: '1mb',
+            encoding: null,
+          });
+        }
+        return next();
+      });
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const req = request(app.listen())
+        .post(urlString())
+        .set('Content-Type', 'application/graphql');
+      req.write(Buffer.from('{ test(who: "World") }'));
+      const response = await req;
+
+      expect(response.status).to.equal(400);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'Must provide query string.' }],
+      });
+    });
+  });
+
+  describe('Pretty printing', () => {
+    it('supports pretty printing', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            pretty: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{test}',
+        }),
+      );
+
+      expect(response.text).to.equal(
+        [
+          // Pretty printed JSON
+          '{',
+          '  "data": {',
+          '    "test": "Hello World"',
+          '  }',
+          '}',
+        ].join('\n'),
+      );
+    });
+
+    it('supports pretty printing configured by request', async () => {
+      const app = server();
+      let pretty: boolean | undefined;
+
+      app.use(
