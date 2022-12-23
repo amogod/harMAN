@@ -1272,3 +1272,66 @@ describe('GraphQL-HTTP tests', () => {
         }),
       });
       const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{ test }',
+        }),
+      );
+
+      expect(response.status).to.equal(500);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: null,
+        errors: [
+          {
+            message: 'Throws!',
+            locations: [{ line: 1, column: 3 }],
+            path: ['test'],
+          },
+        ],
+      });
+    });
+
+    it('allows for custom error formatting to sanitize', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            customFormatErrorFn(error) {
+              return { message: 'Custom error format: ' + error.message };
+            },
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{thrower}',
+        }),
+      );
+
+      expect(response.status).to.equal(200);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: { thrower: null },
+        errors: [
+          {
+            message: 'Custom error format: Throws!',
+          },
+        ],
+      });
+    });
+
+    it('allows for custom error formatting to elaborate', async () => {
+      const app = server();
