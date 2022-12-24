@@ -1335,3 +1335,67 @@ describe('GraphQL-HTTP tests', () => {
 
     it('allows for custom error formatting to elaborate', async () => {
       const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            customFormatErrorFn(error) {
+              return {
+                message: error.message,
+                locations: error.locations,
+                stack: 'Stack trace',
+              };
+            },
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{thrower}',
+        }),
+      );
+
+      expect(response.status).to.equal(200);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: { thrower: null },
+        errors: [
+          {
+            message: 'Throws!',
+            locations: [{ line: 1, column: 2 }],
+            stack: 'Stack trace',
+          },
+        ],
+      });
+    });
+
+    it('handles syntax errors caught by GraphQL', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: 'syntax_error',
+        }),
+      );
+
+      expect(response.status).to.equal(400);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message: 'Syntax Error: Unexpected Name "syntax_error".',
+            locations: [{ line: 1, column: 1 }],
+          },
+        ],
+      });
+    });
