@@ -1536,3 +1536,67 @@ describe('GraphQL-HTTP tests', () => {
       expect(response.status).to.equal(415);
       expect(JSON.parse(response.text)).to.deep.equal({
         errors: [{ message: 'Unsupported charset "UTF-53".' }],
+      });
+    });
+
+    it('handles unknown encoding', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(urlString())
+        .set('Content-Encoding', 'garbage')
+        .send('!@#$%^*(&^$%#@');
+
+      expect(response.status).to.equal(415);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'Unsupported content-encoding "garbage".' }],
+      });
+    });
+
+    it('handles invalid body', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP(() => ({
+            schema: TestSchema,
+          })),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(urlString())
+        .set('Content-Type', 'application/json')
+        .send(`{ "query": "{ ${new Array(102400).fill('test').join('')} }" }`);
+
+      expect(response.status).to.equal(413);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'Invalid body: request entity too large.' }],
+      });
+    });
+
+    it('handles poorly formed variables', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          variables: 'who:You',
