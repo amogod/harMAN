@@ -1472,3 +1472,67 @@ describe('GraphQL-HTTP tests', () => {
       app.use(
         mount(
           urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(
+          urlString({
+            variables: JSON.stringify({ who: 'Dolly' }),
+          }),
+        )
+        .set('Content-Type', 'text/plain')
+        .send('query helloWho($who: String){ test(who: $who) }');
+
+      expect(response.status).to.equal(400);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'Must provide query string.' }],
+      });
+    });
+
+    it('handles unsupported charset', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(urlString())
+        .set('Content-Type', 'application/graphql; charset=ascii')
+        .send('{ test(who: "World") }');
+
+      expect(response.status).to.equal(415);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'Unsupported charset "ASCII".' }],
+      });
+    });
+
+    it('handles unsupported utf charset', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(urlString())
+        .set('Content-Type', 'application/graphql; charset=utf-53')
+        .send('{ test(who: "World") }');
+
+      expect(response.status).to.equal(415);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'Unsupported charset "UTF-53".' }],
