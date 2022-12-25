@@ -1672,3 +1672,78 @@ describe('GraphQL-HTTP tests', () => {
           query: 'query helloWho($who: String){ test(who: $who) }',
         }),
       );
+
+      expect(response.status).to.equal(400);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message: 'Custom error format: Variables are invalid JSON.',
+          },
+        ],
+      });
+    });
+
+    it('allows disabling prettifying poorly formed requests', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            pretty: false,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          variables: 'who:You',
+          query: 'query helloWho($who: String){ test(who: $who) }',
+        }),
+      );
+
+      expect(response.status).to.equal(400);
+      expect(response.text).to.equal(
+        '{"errors":[{"message":"Variables are invalid JSON."}]}',
+      );
+    });
+
+    it('handles invalid variables', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .post(urlString())
+        .send({
+          query: 'query helloWho($who: String){ test(who: $who) }',
+          variables: { who: ['John', 'Jane'] },
+        });
+
+      expect(response.status).to.equal(500);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            locations: [{ column: 16, line: 1 }],
+            message:
+              'Variable "$who" got invalid value ["John", "Jane"]; String cannot represent a non string value: ["John", "Jane"]',
+          },
+        ],
+      });
+    });
+
+    it('handles unsupported HTTP methods', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
