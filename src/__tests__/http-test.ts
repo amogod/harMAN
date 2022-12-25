@@ -1747,3 +1747,69 @@ describe('GraphQL-HTTP tests', () => {
         mount(
           urlString(),
           graphqlHTTP({
+            schema: TestSchema,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).put(
+        urlString({ query: '{test}' }),
+      );
+
+      expect(response.status).to.equal(405);
+      expect(response.get('allow')).to.equal('GET, POST');
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [{ message: 'GraphQL only supports GET and POST requests.' }],
+      });
+    });
+  });
+
+  describe('Built-in GraphiQL support', () => {
+    it('does not renders GraphiQL if no opt-in', async () => {
+      const app = server();
+
+      app.use(mount(urlString(), graphqlHTTP({ schema: TestSchema })));
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}' }))
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('application/json');
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
+
+    it('presents GraphiQL when accepting HTML', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}' }))
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.include('graphiql.min.js');
+    });
+
+    it('contains a default query within GraphiQL', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: { defaultQuery: 'query testDefaultQuery { hello }' },
+          }),
+        ),
+      );
