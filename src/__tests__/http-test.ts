@@ -2039,3 +2039,73 @@ describe('GraphQL-HTTP tests', () => {
         .set('Accept', 'text/html,application/json');
 
       expect(response.status).to.equal(200);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.include('{test}');
+      expect(response.text).to.include('graphiql.min.js');
+    });
+
+    it('returns JSON if preferred', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}' }))
+        .set('Accept', 'application/json,text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('application/json');
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
+
+    it('prefers JSON if unknown accept', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}' }))
+        .set('Accept', 'unknown');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('application/json');
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
+
+    it('prefers JSON if explicitly requested raw response', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}', raw: '' }))
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('application/json');
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
