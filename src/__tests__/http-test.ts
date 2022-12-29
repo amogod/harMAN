@@ -1957,3 +1957,85 @@ describe('GraphQL-HTTP tests', () => {
         .get(
           urlString({
             query: 'query helloWho($who: String) { test(who: $who) }',
+            variables: JSON.stringify({ who: 'Dolly' }),
+          }),
+        )
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.include(
+        'variables: ' +
+          JSON.stringify(JSON.stringify({ who: 'Dolly' }, null, 2)),
+      );
+    });
+
+    it('GraphiQL accepts an empty query', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString())
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.include('response: undefined');
+    });
+
+    it('GraphiQL accepts a mutation query - does not execute it', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(
+          urlString({
+            query: 'mutation TestMutation { writeTest { test } }',
+          }),
+        )
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.include(
+        'query: "mutation TestMutation { writeTest { test } }"',
+      );
+      expect(response.text).to.include('response: undefined');
+    });
+
+    it('returns HTML if preferred', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}' }))
+        .set('Accept', 'text/html,application/json');
+
+      expect(response.status).to.equal(200);
