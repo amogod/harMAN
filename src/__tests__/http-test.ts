@@ -1879,3 +1879,81 @@ describe('GraphQL-HTTP tests', () => {
       expect(response.text).to.include(
         'response: ' +
           JSON.stringify(
+            JSON.stringify({ data: { b: 'Hello World' } }, null, 2),
+          ),
+      );
+      expect(response.text).to.include('operationName: "B"');
+    });
+
+    it('escapes HTML in queries within GraphiQL', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '</script><script>alert(1)</script>' }))
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(400);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.not.include(
+        '</script><script>alert(1)</script>',
+      );
+    });
+
+    it('escapes HTML in variables within GraphiQL', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(
+          urlString({
+            query: 'query helloWho($who: String) { test(who: $who) }',
+            variables: JSON.stringify({
+              who: '</script><script>alert(1)</script>',
+            }),
+          }),
+        )
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('text/html');
+      expect(response.text).to.not.include(
+        '</script><script>alert(1)</script>',
+      );
+    });
+
+    it('GraphiQL renders provided variables', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            graphiql: true,
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(
+          urlString({
+            query: 'query helloWho($who: String) { test(who: $who) }',
