@@ -2170,3 +2170,66 @@ describe('GraphQL-HTTP tests', () => {
 
   describe('Custom validate function', () => {
     it('returns data', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            customValidateFn(schema, documentAST, validationRules) {
+              return validate(schema, documentAST, validationRules);
+            },
+          }),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}', raw: '' }))
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.text).to.equal('{"data":{"test":"Hello World"}}');
+    });
+
+    it('returns validation errors', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            customValidateFn(schema, documentAST, validationRules) {
+              const errors = validate(schema, documentAST, validationRules);
+
+              return [new GraphQLError(`custom error ${errors.length}`)];
+            },
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{thrower}',
+        }),
+      );
+
+      expect(response.status).to.equal(400);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        errors: [
+          {
+            message: 'custom error 0',
+          },
+        ],
+      });
+    });
+  });
+
+  describe('Custom validation rules', () => {
+    const AlwaysInvalidRule = function (
+      context: ValidationContext,
+    ): ASTVisitor {
+      return {
+        Document() {
+          context.reportError(
