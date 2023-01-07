@@ -2433,3 +2433,71 @@ describe('GraphQL-HTTP tests', () => {
 
   describe('Custom result extensions', () => {
     it('allows for adding extensions', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP(() => ({
+            schema: TestSchema,
+            context: { foo: 'bar' },
+            extensions({ context }) {
+              return { contextValue: JSON.stringify(context) };
+            },
+          })),
+        ),
+      );
+
+      const response = await request(app.listen())
+        .get(urlString({ query: '{test}', raw: '' }))
+        .set('Accept', 'text/html');
+
+      expect(response.status).to.equal(200);
+      expect(response.type).to.equal('application/json');
+      expect(response.text).to.equal(
+        '{"data":{"test":"Hello World"},"extensions":{"contextValue":"{\\"foo\\":\\"bar\\"}"}}',
+      );
+    });
+
+    it('extensions have access to initial GraphQL result', async () => {
+      const app = server();
+
+      app.use(
+        mount(
+          urlString(),
+          graphqlHTTP({
+            schema: TestSchema,
+            customFormatErrorFn: () => ({
+              message: 'Some generic error message.',
+            }),
+            extensions({ result }) {
+              return { preservedResult: { ...result } };
+            },
+          }),
+        ),
+      );
+
+      const response = await request(app.listen()).get(
+        urlString({
+          query: '{thrower}',
+        }),
+      );
+
+      expect(response.status).to.equal(200);
+      expect(JSON.parse(response.text)).to.deep.equal({
+        data: { thrower: null },
+        errors: [{ message: 'Some generic error message.' }],
+        extensions: {
+          preservedResult: {
+            data: { thrower: null },
+            errors: [
+              {
+                message: 'Throws!',
+                locations: [{ line: 1, column: 2 }],
+                path: ['thrower'],
+              },
+            ],
+          },
+        },
+      });
+    });
