@@ -127,3 +127,6 @@ describe('Useful errors when incorrectly used', () => {
         { message: 'Query root type must be provided.' },
         { message: 'Expected directive but got: null.' },
       ],
+    });
+  });
+});
