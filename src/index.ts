@@ -274,3 +274,66 @@ export function graphqlHTTP(options: Options): Middleware {
           graphqlErrors: validationErrors,
         });
       }
+
+      // Only query operations are allowed on GET requests.
+      if (request.method === 'GET') {
+        // Determine if this GET request will perform a non-query.
+        const operationAST = getOperationAST(documentAST, operationName);
+        if (operationAST && operationAST.operation !== 'query') {
+          // If GraphiQL can be shown, do not perform this query, but
+          // provide it to GraphiQL so that the requester may perform it
+          // themselves if desired.
+          if (showGraphiQL) {
+            return respondWithGraphiQL(response, graphiqlOptions, params);
+          }
+
+          // Otherwise, report a 405: Method Not Allowed error.
+          throw httpError(
+            405,
+            `Can only perform a ${operationAST.operation} operation from a POST request.`,
+            { headers: { Allow: 'POST' } },
+          );
+        }
+      }
+
+      // Perform the execution, reporting any errors creating the context.
+      try {
+        result = await executeFn({
+          schema,
+          document: documentAST,
+          rootValue,
+          contextValue: context,
+          variableValues: variables,
+          operationName,
+          fieldResolver,
+          typeResolver,
+        });
+        response.status = 200;
+      } catch (contextError: unknown) {
+        // Return 400: Bad Request if any execution context errors exist.
+        throw httpError(400, 'GraphQL execution context error.', {
+          graphqlErrors: [contextError],
+        });
+      }
+
+      // Collect and apply any metadata extensions if a function was provided.
+      // https://graphql.github.io/graphql-spec/#sec-Response-Format
+      if (extensionsFn) {
+        const extensions = await extensionsFn({
+          document: documentAST,
+          variables,
+          operationName,
+          result,
+          context,
+        });
+
+        if (extensions != null) {
+          result = { ...result, extensions };
+        }
+      }
+    } catch (rawError: unknown) {
+      // If an error was caught, report the httpError status, or 500.
+      const error = httpError(
+        500,
+        /* istanbul ignore next: Thrown by underlying library. */
+        rawError instanceof Error ? rawError : String(rawError),
