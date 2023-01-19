@@ -209,3 +209,68 @@ export function graphqlHTTP(options: Options): Middleware {
       pretty = optionsData.pretty ?? false;
 
       formatErrorFn =
+        optionsData.customFormatErrorFn ??
+        optionsData.formatError ??
+        formatErrorFn;
+
+      devAssertIsObject(
+        schema,
+        'GraphQL middleware options must contain a schema.',
+      );
+
+      // GraphQL HTTP only supports GET and POST methods.
+      if (request.method !== 'GET' && request.method !== 'POST') {
+        throw httpError(405, 'GraphQL only supports GET and POST requests.', {
+          headers: { Allow: 'GET, POST' },
+        });
+      }
+
+      // Get GraphQL params from the request and POST body data.
+      const { query, variables, operationName } = params;
+      showGraphiQL = canDisplayGraphiQL(request, params) && graphiql !== false;
+      if (typeof graphiql !== 'boolean') {
+        graphiqlOptions = graphiql;
+      }
+
+      // If there is no query, but GraphiQL will be displayed, do not produce
+      // a result, otherwise return a 400: Bad Request.
+      if (query == null) {
+        if (showGraphiQL) {
+          return respondWithGraphiQL(response, graphiqlOptions);
+        }
+        throw httpError(400, 'Must provide query string.');
+      }
+
+      // Validate Schema
+      const schemaValidationErrors = validateSchema(schema);
+      if (schemaValidationErrors.length > 0) {
+        // Return 500: Internal Server Error if invalid schema.
+        throw httpError(500, 'GraphQL schema validation error.', {
+          graphqlErrors: schemaValidationErrors,
+        });
+      }
+
+      // Parse source to AST, reporting any syntax error.
+      let documentAST: DocumentNode;
+
+      try {
+        documentAST = parseFn(new Source(query, 'GraphQL request'));
+      } catch (syntaxError: unknown) {
+        // Return 400: Bad Request if any syntax errors errors exist.
+        throw httpError(400, 'GraphQL syntax error.', {
+          graphqlErrors: [syntaxError],
+        });
+      }
+
+      // Validate AST, reporting any errors.
+      const validationErrors = validateFn(schema, documentAST, [
+        ...specifiedRules,
+        ...validationRules,
+      ]);
+
+      if (validationErrors.length > 0) {
+        // Return 400: Bad Request if any validation errors exist.
+        throw httpError(400, 'GraphQL validation error.', {
+          graphqlErrors: validationErrors,
+        });
+      }
