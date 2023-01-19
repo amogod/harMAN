@@ -136,3 +136,76 @@ export interface OptionsData {
    * A resolver function to use when one is not provided by the schema.
    * If not provided, the default field resolver is used (which looks for a
    * value or method on the source value with the field's name).
+   */
+  fieldResolver?: GraphQLFieldResolver<unknown, unknown>;
+
+  /**
+   * A type resolver function to use when none is provided by the schema.
+   * If not provided, the default type resolver is used (which looks for a
+   * `__typename` field or alternatively calls the `isTypeOf` method).
+   */
+  typeResolver?: GraphQLTypeResolver<unknown, unknown>;
+}
+
+type Middleware = (ctx: Context) => Promise<void>;
+
+/**
+ * Middleware for express; takes an options object or function as input to
+ * configure behavior, and returns an express middleware.
+ */
+export function graphqlHTTP(options: Options): Middleware {
+  devAssertIsNonNullable(options, 'GraphQL middleware requires options.');
+
+  return async function middleware(ctx): Promise<void> {
+    const req = ctx.req;
+    const request = ctx.request;
+    const response = ctx.response;
+
+    // Higher scoped variables are referred to at various stages in the
+    // asynchronous state machine below.
+    let params: GraphQLParams | undefined;
+    let showGraphiQL = false;
+    let graphiqlOptions: GraphiQLOptions | undefined;
+    let formatErrorFn = formatError;
+    let pretty = false;
+    let result: ExecutionResult;
+
+    try {
+      // Parse the Request to get GraphQL request parameters.
+      try {
+        // Use request.body when req.body is undefined.
+        const expressReq = req as any;
+        expressReq.body = expressReq.body ?? request.body;
+
+        params = await getGraphQLParams(expressReq);
+      } catch (error: unknown) {
+        // When we failed to parse the GraphQL parameters, we still need to get
+        // the options object, so make an options call to resolve just that.
+        const optionsData = await resolveOptions();
+        pretty = optionsData.pretty ?? false;
+        formatErrorFn =
+          optionsData.customFormatErrorFn ??
+          optionsData.formatError ??
+          formatErrorFn;
+        throw error;
+      }
+
+      // Then, resolve the Options to get OptionsData.
+      const optionsData = await resolveOptions(params);
+
+      // Collect information from the options data object.
+      const schema = optionsData.schema;
+      const rootValue = optionsData.rootValue;
+      const validationRules = optionsData.validationRules ?? [];
+      const fieldResolver = optionsData.fieldResolver;
+      const typeResolver = optionsData.typeResolver;
+      const graphiql = optionsData.graphiql ?? false;
+      const extensionsFn = optionsData.extensions;
+      const context = optionsData.context ?? ctx;
+      const parseFn = optionsData.customParseFn ?? parse;
+      const executeFn = optionsData.customExecuteFn ?? execute;
+      const validateFn = optionsData.customValidateFn ?? validate;
+
+      pretty = optionsData.pretty ?? false;
+
+      formatErrorFn =
