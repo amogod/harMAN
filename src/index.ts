@@ -398,3 +398,66 @@ export function graphqlHTTP(options: Options): Middleware {
       requestParams?: GraphQLParams,
     ): Promise<OptionsData> {
       const optionsResult = await Promise.resolve(
+        typeof options === 'function'
+          ? options(request, response, ctx, requestParams)
+          : options,
+      );
+
+      devAssertIsObject(
+        optionsResult,
+        'GraphQL middleware option function must return an options object or a promise which will be resolved to an options object.',
+      );
+
+      if (optionsResult.formatError) {
+        // eslint-disable-next-line no-console
+        console.warn(
+          '`formatError` is deprecated and replaced by `customFormatErrorFn`. It will be removed in version 1.0.0.',
+        );
+      }
+
+      return optionsResult;
+    }
+  };
+}
+
+function respondWithGraphiQL(
+  response: Response,
+  options?: GraphiQLOptions,
+  params?: GraphQLParams,
+  result?: FormattedExecutionResult,
+): void {
+  const data: GraphiQLData = {
+    query: params?.query,
+    variables: params?.variables,
+    operationName: params?.operationName,
+    result,
+  };
+  const payload = renderGraphiQL(data, options);
+
+  response.type = 'text/html';
+  response.body = payload;
+}
+
+/**
+ * Helper function to determine if GraphiQL can be displayed.
+ */
+function canDisplayGraphiQL(request: Request, params: GraphQLParams): boolean {
+  // If `raw` false, GraphiQL mode is not enabled.
+  // Allowed to show GraphiQL if not requested as raw and this request prefers HTML over JSON.
+  return !params.raw && request.accepts(['json', 'html']) === 'html';
+}
+
+function devAssertIsObject(value: unknown, message: string): void {
+  devAssert(value != null && typeof value === 'object', message);
+}
+
+function devAssertIsNonNullable(value: unknown, message: string): void {
+  devAssert(value != null, message);
+}
+
+function devAssert(condition: unknown, message: string): void {
+  const booleanCondition = Boolean(condition);
+  if (!booleanCondition) {
+    throw new TypeError(message);
+  }
+}
