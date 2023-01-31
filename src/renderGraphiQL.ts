@@ -79,3 +79,73 @@ function getEditorThemeParams(
     return;
   }
   if (typeof editorTheme === 'string') {
+    return {
+      name: editorTheme,
+      link: `<link href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/${CODE_MIRROR_VERSION}/theme/${editorTheme}.css" rel="stylesheet" />`,
+    };
+  }
+  if (
+    typeof editorTheme === 'object' &&
+    editorTheme.name &&
+    typeof editorTheme.name === 'string' &&
+    editorTheme.url &&
+    typeof editorTheme.url === 'string'
+  ) {
+    return {
+      link: `<link href="${editorTheme.url}" rel="stylesheet" />`,
+      name: editorTheme.name,
+    };
+  }
+  throw Error(
+    'invalid parameter "editorTheme": should be undefined/null, string or ' +
+      `{name: string, url: string} but provided is "${
+        typeof editorTheme === 'object'
+          ? JSON.stringify(editorTheme)
+          : editorTheme
+      }"`,
+  );
+}
+
+/**
+ * When express-graphql receives a request which does not Accept JSON, but does
+ * Accept HTML, it may present GraphiQL, the in-browser GraphQL explorer IDE.
+ *
+ * When shown, it will be pre-populated with the result of having executed the
+ * requested query.
+ */
+export function renderGraphiQL(
+  data: GraphiQLData,
+  options?: GraphiQLOptions,
+): string {
+  const queryString = data.query;
+  const variablesString =
+    data.variables != null ? JSON.stringify(data.variables, null, 2) : null;
+  const resultString =
+    data.result != null ? JSON.stringify(data.result, null, 2) : null;
+  const operationName = data.operationName;
+  const defaultQuery = options?.defaultQuery;
+  const headerEditorEnabled = options?.headerEditorEnabled;
+  const shouldPersistHeaders = options?.shouldPersistHeaders;
+  const subscriptionEndpoint = options?.subscriptionEndpoint;
+  const websocketClient = options?.websocketClient ?? 'v0';
+  const editorTheme = getEditorThemeParams(options?.editorTheme);
+
+  let subscriptionScripts = '';
+  if (subscriptionEndpoint != null) {
+    if (websocketClient === 'v1') {
+      subscriptionScripts = `
+      <script>
+        ${loadFileStaticallyFromNPM('graphql-ws/umd/graphql-ws.js')}
+      </script>
+      <script>
+      ${loadFileStaticallyFromNPM(
+        'subscriptions-transport-ws/browser/client.js',
+      )}
+      </script>
+      `;
+    } else {
+      subscriptionScripts = `
+      <script>
+        ${loadFileStaticallyFromNPM(
+          'subscriptions-transport-ws/browser/client.js',
+        )}
