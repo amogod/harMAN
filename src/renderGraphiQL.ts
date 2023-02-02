@@ -149,3 +149,66 @@ export function renderGraphiQL(
         ${loadFileStaticallyFromNPM(
           'subscriptions-transport-ws/browser/client.js',
         )}
+      </script>
+      <script>
+        ${loadFileStaticallyFromNPM(
+          'subscriptions-transport-ws/browser/client.js',
+        )}
+      </script>
+      <script>
+        ${loadFileStaticallyFromNPM(
+          'graphiql-subscriptions-fetcher/browser/client.js',
+        )}
+      </script>
+      `;
+    }
+  }
+
+  return `<!--
+The request to this GraphQL server provided the header "Accept: text/html"
+and as a result has been presented GraphiQL - an in-browser IDE for
+exploring GraphQL.
+If you wish to receive JSON, provide the header "Accept: application/json" or
+add "&raw" to the end of the URL within a browser.
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>GraphiQL</title>
+  <meta name="robots" content="noindex" />
+  <meta name="referrer" content="origin" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+    }
+    #graphiql {
+      height: 100vh;
+    }
+  </style>
+  <style>
+    /* graphiql/graphiql.css */
+    ${loadFileStaticallyFromNPM('graphiql/graphiql.css')}
+  </style>
+  ${editorTheme ? editorTheme.link : ''}
+  <script>
+    // promise-polyfill/dist/polyfill.min.js
+    ${loadFileStaticallyFromNPM('promise-polyfill/dist/polyfill.min.js')}
+  </script>
+  <script>
+    // unfetch/dist/unfetch.umd.js
+    ${loadFileStaticallyFromNPM('unfetch/dist/unfetch.umd.js')}
+  </script>
+  <script>
+    // react/umd/react.production.min.js
+    ${loadFileStaticallyFromNPM('react/umd/react.production.min.js')}
+  </script>
+  <script>
+    // react-dom/umd/react-dom.production.min.js
+    ${loadFileStaticallyFromNPM('react-dom/umd/react-dom.production.min.js')}
+  </script>
+  <script>
+    // graphiql/graphiql.min.js
+    ${loadFileStaticallyFromNPM('graphiql/graphiql.min.js')}
