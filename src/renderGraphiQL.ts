@@ -284,3 +284,52 @@ add "&raw" to the end of the URL within a browser.
           return window.GraphiQL.createFetcher({url, legacyClient: client});
         }
       } else {
+        return graphQLFetcher;
+      }
+    }
+
+    // When the query and variables string is edited, update the URL bar so
+    // that it can be easily shared.
+    function onEditQuery(newQuery) {
+      parameters.query = newQuery;
+      updateURL();
+    }
+
+    function onEditVariables(newVariables) {
+      parameters.variables = newVariables;
+      updateURL();
+    }
+
+    function onEditOperationName(newOperationName) {
+      parameters.operationName = newOperationName;
+      updateURL();
+    }
+
+    function updateURL() {
+      history.replaceState(null, null, locationQuery(parameters));
+    }
+
+    // Render <GraphiQL /> into the body.
+    ReactDOM.render(
+      React.createElement(GraphiQL, {
+        fetcher: makeFetcher(),
+        onEditQuery: onEditQuery,
+        onEditVariables: onEditVariables,
+        onEditOperationName: onEditOperationName,
+        editorTheme: ${safeSerialize(
+          editorTheme ? editorTheme.name : undefined,
+        )},
+        query: ${safeSerialize(queryString)},
+        response: ${safeSerialize(resultString)},
+        variables: ${safeSerialize(variablesString)},
+        operationName: ${safeSerialize(operationName)},
+        defaultQuery: ${safeSerialize(defaultQuery)},
+        headerEditorEnabled: ${safeSerialize(headerEditorEnabled)},
+        shouldPersistHeaders: ${safeSerialize(shouldPersistHeaders)}
+      }),
+      document.getElementById('graphiql')
+    );
+  </script>
+</body>
+</html>`;
+}
