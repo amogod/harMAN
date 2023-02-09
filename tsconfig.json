@@ -1,2 +1,5 @@
 {
-  "compile
+  "compilerOptions": {
+    "declaration": true,
+    "isolatedModules": true,
+ 
