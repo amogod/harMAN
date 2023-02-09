@@ -2,4 +2,7 @@
   "compilerOptions": {
     "declaration": true,
     "isolatedModules": true,
- 
+    "lib": ["es2018"],
+    "module": "commonjs",
+    "target": "es2018",
+    "
