@@ -7,4 +7,6 @@
     "target": "es2018",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "node
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "noImplic
