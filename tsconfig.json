@@ -14,4 +14,8 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "forceConsistentCasingInFileNames": true,
-    "importsNotUsedAsValues": "e
+    "importsNotUsedAsValues": "error",
+    "newLine": "LF",
+    "preserveConstEnums": true
+  }
+}
